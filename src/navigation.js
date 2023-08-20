@@ -37,6 +37,7 @@ const Navigation = () => {
               </TouchableOpacity>
             ),
             headerTitle: "", // Remove the title "Products"
+            // headerShown:false,
             headerLeft: () => (
               <View style={{
                 flexDirection: "row",
@@ -56,7 +57,7 @@ const Navigation = () => {
         <Stack.Screen
           name="Product Details"
           component={ProductDetailsScreen}
-          options={{ presentation: "modal" }}
+        // options={{ presentation: "modal" }}
         />
         <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
       </Stack.Navigator>

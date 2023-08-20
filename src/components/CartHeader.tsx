@@ -1,9 +1,7 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, Image } from "react-native";
 
 const CartHeader = ({ itemCount }) => {
-   const navigation=useNavigation();
   return (
     <View
       style={{
@@ -12,12 +10,10 @@ const CartHeader = ({ itemCount }) => {
         paddingRight: 15,
       }}
     >
-      {/* <TouchableOpacity onPress={() => `navigation`.navigate("Shopping Cart")}> */}
-        <Image
-          source={require("../../assets/shopping-cart.png")}
-          style={{ width: 20, height: 20 }}
-        />
-      {/* </TouchableOpacity> */}
+      <Image
+        source={require("../../assets/shopping-cart.png")}
+        style={{ width: 20, height: 20 }}
+      />
       <View
         style={{
           position: "absolute",

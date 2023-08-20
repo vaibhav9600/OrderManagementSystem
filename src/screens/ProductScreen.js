@@ -17,9 +17,8 @@ import { productSlice } from "../store/productSlice";
 import { MaterialIcons } from '@expo/vector-icons'; // Import icons from Expo library
 import ListProductTypes from '../components/ListProductTypes';
 import { useState, useRef, useEffect } from 'react';
-import { Keyboard } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const ProductScreen = ({ navigation }) => {
@@ -43,6 +42,7 @@ const ProductScreen = ({ navigation }) => {
   const [oldData, setOldData] = useState([]);
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
+  const [showBackground, setShowBackground] = useState(false);
 
   const dispatch = useDispatch();
   const searchRef = useRef();
@@ -70,7 +70,7 @@ const ProductScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.borderPadding}>
         <View style={styles.searchBar}>
           {/* Magnifying glass icon */}
@@ -110,6 +110,14 @@ const ProductScreen = ({ navigation }) => {
       <View>
         <ListProductTypes />
       </View>
+      <Text style={{
+        fontSize: 15,
+        paddingLeft: 16,
+        paddingTop: 20,
+        fontWeight: 600,
+        fontVariant: "inter",
+      }}>Top Deals for You
+      </Text>
       <FlatList
         ref={flatListRef}
         initialScrollIndex={0}
@@ -126,7 +134,7 @@ const ProductScreen = ({ navigation }) => {
             {/* <Pressable > */}
             <Image source={{ uri: item.image }} style={image} />
             {/* </Pressable> */}
-            <Text>{item.name}</Text>
+            <Text style={styles.textName}>{item.name}</Text>
             <View style={containerPrice}>
               <View style={priceContainer}>
                 <Text style={price}>₹{item.price}</Text>
@@ -259,7 +267,22 @@ const ProductScreen = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-    </View>
+      {visible && (
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          }}
+          onPress={() => {
+            setVisible(false); // Close the modal
+          }}
+        />
+      )}
+    </SafeAreaView>
   );
 };
 
@@ -330,6 +353,8 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     aspectRatio: 1,
+    backgroundColor: "#F6F6F6",
+    padding: 16
   },
   itemContainer: {
     width: "50%",
@@ -363,6 +388,11 @@ const styles = StyleSheet.create({
   saleText: {
     color: "white",
     fontWeight: "bold",
+  },
+  textName: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    color: "#686868",
   },
 });
 
