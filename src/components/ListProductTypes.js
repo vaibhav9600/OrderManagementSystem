@@ -20,7 +20,7 @@ const ProductType = ({ imageSource, label }) => (
     </View>
 );
 
-const ListProductTypes = () => {
+const ListProductTypes = ({ navigation }) => {
     const productTypes = [
         { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/cement.png'), label: 'Cement' },
         { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/paint-roller.png'), label: 'Paint' },
@@ -34,7 +34,10 @@ const ListProductTypes = () => {
                 <TouchableOpacity
                     key={index}
                     style={styles.productTypeButton}
-                    onPress={() => console.log(`${productType.label} button pressed`)}
+                    onPress={() =>
+                    // console.log(`${productType.label} button pressed`)
+                    { navigation.navigate('Cement Page'); }
+                    }
                 >
                     <ProductType
                         imageSource={productType.imageSource}

@@ -19,9 +19,10 @@ import ListProductTypes from '../components/ListProductTypes';
 import { useState, useRef, useEffect } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SearchBar from '../components/SearchBar';
 
 
-const ProductScreen = ({ navigation }) => {
+const CementPage = ({ navigation }) => {
 
   const {
     itemContainer,
@@ -70,54 +71,7 @@ const ProductScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.borderPadding}>
-        <View style={styles.searchBar}>
-          {/* Magnifying glass icon */}
-          <View style={styles.searchIcon}>
-            <MaterialIcons name="search" size={24} color="#686868" />
-          </View>
-          <TextInput
-            ref={textInputRef}
-            style={styles.searchInput}
-            placeholder="Search Products"
-            value={search}
-            onChangeText={txt => {
-              setSearch(txt);
-              searchFilterFunction(txt);
-            }}
-            onKeyPress={({ nativeEvent }) => {
-              if (nativeEvent.key === 'Backspace') {
-                const newText = search.slice(0, -1);
-                setSearch(newText);
-                searchFilterFunction(newText);
-              }
-            }}
-          />
-          {search == '' ? null : (
-            <TouchableOpacity
-              style={{ marginRight: 15 }}
-              onPress={() => {
-                textInputRef.current.clear();
-                setSearch('');
-                searchFilterFunction('');
-              }}>
-              <MaterialCommunityIcons name="close" size={24} color="black" />
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
-      <View>
-        <ListProductTypes navigation={navigation} />
-      </View>
-      <Text style={{
-        fontSize: 15,
-        paddingLeft: 16,
-        paddingTop: 20,
-        fontWeight: 600,
-        fontVariant: "inter",
-      }}>Top Deals for You
-      </Text>
+    <SafeAreaView style={styles.container}>``
       <FlatList
         ref={flatListRef}
         initialScrollIndex={0}
@@ -400,4 +354,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductScreen;
+export default CementPage;
