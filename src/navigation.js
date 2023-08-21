@@ -18,36 +18,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { productSlice } from "./store/productSlice";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react-redux";
+import { useNavigationState } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  const [oldData, setOldData] = useState([]);
-  const [search, setSearch] = useState('');
-  const [data, setData] = useState([]);
-
   const products = useSelector((state) => state.products.products);
-
-
-  useEffect(() => {
-    // Initialize data with locally available products
-    setData(products);
-    setOldData(products);
-  }, []);
-
-  const searchFilterFunction = text => {
-    setSearch(text);
-
-    if (text !== '') {
-      const filteredData = oldData.filter(item =>
-        item.name.toLowerCase().includes(text.toLowerCase())
-      );
-      setData(filteredData);
-    } else {
-      setData(oldData);
-    }
-  };
 
   const numberOfItems = useSelector(selectNumberOfItems);
   return (
@@ -101,22 +78,20 @@ const Navigation = () => {
         // options={{ presentation: "modal" }}
         />
         <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
-        <Stack.Screen name="Filter Page" component={FilterPage} />
+        <Stack.Screen name="Filter Page"
+        component={FilterPage}
+        options={({ navigation }) => ({
+          headerTitle: "", // Remove the title "Products"
+          headerShown:"false",
+          header:()=> {
+            return (
+              <></>
+            );
+          }
+        })}
+        />
         <Stack.Screen name="Cement Page" component={CementPage}
           options={({ navigation }) => ({
-            // headerRight: () => (
-            //   <TouchableOpacity
-            //     onPress={() => navigation.navigate("Shopping Cart")}
-            //     style={{ flexDirection: "row" }}
-            //   >
-            //     <CartHeader itemCount={numberOfItems} />
-            //   </TouchableOpacity>
-            // ),
-            // headerTitle: "Hek", // Remove the title "Products"
-            // headerShown: true,
-            // headerLeft: () => (
-
-            // ),
             header: () => {
               return (
                 <View style={{ padding: 10, borderBottomColor: "white", borderBottomWidth: 0, }}>
