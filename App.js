@@ -9,23 +9,23 @@ import FilterPage from "./src/screens/FilterPage";
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <SafeAreaView style={styles.wrapper}> */}
+      <SafeAreaView style={styles.wrapper}>
       {/* <View style={styles.container}> */}
       <Navigation />
       <StatusBar style="auto" />
       {/* </View> */}
-      {/* </SafeAreaView> */}
+      </SafeAreaView>
     </Provider>
   );
 }
 
-// const styles = StyleSheet.create({
-//   wrapper: {
-//     flex: 1,
-//     backgroundColor: "white",
-//   },
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//   },
-// });
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+});

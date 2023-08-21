@@ -19,7 +19,6 @@ import ListProductTypes from '../components/ListProductTypes';
 import { useState, useRef, useEffect } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SearchBar from '../components/SearchBar';
 
 
 const CementPage = ({ navigation }) => {
@@ -71,7 +70,43 @@ const CementPage = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>``
+    <SafeAreaView style={styles.container}>
+      <View style={styles.borderPadding}>
+        <View style={styles.searchBar}>
+          {/* Magnifying glass icon */}
+          <View style={styles.searchIcon}>
+            <MaterialIcons name="search" size={24} color="#686868" />
+          </View>
+          <TextInput
+            ref={textInputRef}
+            style={styles.searchInput}
+            placeholder="Search Products"
+            value={search}
+            onChangeText={txt => {
+              setSearch(txt);
+              searchFilterFunction(txt);
+            }}
+            onKeyPress={({ nativeEvent }) => {
+              if (nativeEvent.key === 'Backspace') {
+                const newText = search.slice(0, -1);
+                setSearch(newText);
+                searchFilterFunction(newText);
+              }
+            }}
+          />
+          {search == '' ? null : (
+            <TouchableOpacity
+              style={{ marginRight: 15 }}
+              onPress={() => {
+                textInputRef.current.clear();
+                setSearch('');
+                searchFilterFunction('');
+              }}>
+              <MaterialCommunityIcons name="close" size={24} color="black" />
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
       <FlatList
         ref={flatListRef}
         initialScrollIndex={0}
@@ -253,7 +288,9 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingLeft: 12,
     paddingRight: 16,
-    paddingBottom: 8
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#d3d3d3"
   },
   searchBar: {
     borderColor: "#ccc",

@@ -64,30 +64,35 @@ const Navigation = () => {
           name="Products"
           component={ProductScreen}
           options={({ navigation }) => ({
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Shopping Cart")}
-                style={{ flexDirection: "row" }}
-              >
-                <CartHeader itemCount={numberOfItems} />
-              </TouchableOpacity>
-            ),
             headerTitle: "", // Remove the title "Products"
-            // headerShown:false,
-            headerLeft: () => (
-              <View style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginLeft: -10
-              }}>
-                <Text style={{ color: "#3D3E3C", fontSize: 20, fontWeight: "bold" }}>
-                  INFRA.
-                </Text>
-                <Text style={{ color: "#DF542E", fontSize: 20, fontWeight: "bold", marginLeft: 0 }}>
-                  MARKET
-                </Text>
-              </View>
-            ),
+            header: () => {
+              return (
+                <View style={{ padding: 10, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <View style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        // marginLeft: -10
+                      }}>
+                        <Text style={{ color: "#3D3E3C", fontSize: 20, fontWeight: "bold" }}>
+                          INFRA.
+                        </Text>
+                        <Text style={{ color: "#DF542E", fontSize: 20, fontWeight: "bold", marginLeft: 0 }}>
+                          MARKET
+                        </Text>
+                      </View>
+                    </View>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate("Shopping Cart")}
+                      style={{ flexDirection: "row" }}
+                    >
+                      <CartHeader itemCount={numberOfItems} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            }
           })}
         />
         <Stack.Screen
@@ -114,8 +119,7 @@ const Navigation = () => {
             // ),
             header: () => {
               return (
-                <View style={{ padding: 20, borderBottomColor: "#D3D3D3", borderBottomWidth: 1 }}>
-                  {/* First row */}
+                <View style={{ padding: 10, borderBottomColor: "white", borderBottomWidth: 0, }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <TouchableOpacity
@@ -138,20 +142,7 @@ const Navigation = () => {
                       <CartHeader itemCount={numberOfItems} />
                     </TouchableOpacity>
                   </View>
-
-                  {/* Second row */}
-                  <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20, borderWidth: 1, borderColor: 'gray', borderRadius: 6, padding: 5 }}>
-                    <Ionicons name="search" size={18} color="gray" style={{ marginLeft: 10 }} />
-                    <TextInput
-                      style={{ flex: 1, marginLeft: 5, fontSize: 16 }}
-                      placeholder="Search..."
-                    />
-                    <TouchableOpacity onPress={() => console.log("Close button pressed")} style={{ marginRight: 10 }}>
-                      <FontAwesome name="close" size={18} color="gray" />
-                    </TouchableOpacity>
-                  </View>
                 </View>
-                // </View>
               );
             },
           })}
