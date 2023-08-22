@@ -20,7 +20,6 @@ import { useState, useRef, useEffect } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 const ProductScreen = ({ navigation }) => {
 
   const {
@@ -34,6 +33,21 @@ const ProductScreen = ({ navigation }) => {
     price,
   } = styles;
 
+  const HeaderMove = () => {
+    return (
+      <>
+        <ListProductTypes navigation={navigation} />
+        <Text style={{
+          fontSize: 15,
+          paddingLeft: 16,
+          paddingTop: 20,
+          fontWeight: 600,
+          fontVariant: "inter",
+        }}>Top Deals for You
+        </Text>
+      </>
+    );
+  };
 
   const products = useSelector((state) => state.products.products);
 
@@ -48,6 +62,7 @@ const ProductScreen = ({ navigation }) => {
   const searchRef = useRef();
   const textInputRef = useRef();
   const flatListRef = useRef(null);
+  const scrollViewRef = useRef();
 
   useEffect(() => {
     // Initialize data with locally available products
@@ -107,21 +122,13 @@ const ProductScreen = ({ navigation }) => {
           )}
         </View>
       </View>
-      <View>
-        <ListProductTypes navigation={navigation} />
-      </View>
-      <Text style={{
-        fontSize: 15,
-        paddingLeft: 16,
-        paddingTop: 20,
-        fontWeight: 600,
-        fontVariant: "inter",
-      }}>Top Deals for You
-      </Text>
+
       <FlatList
         ref={flatListRef}
         initialScrollIndex={0}
         data={data}
+        ListHeaderComponent={HeaderMove}
+        removeClippedSubviews={false} // Add this line
         renderItem={({ item }) => (
           <Pressable
             onPress={() => {
@@ -397,6 +404,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 16,
     color: "#686868",
+  },
+  scrollArea: {
+    flex: 1,
+    marginBottom: 60, // Adjust this value to ensure space for the bottom buttons
+  },
+  scrollContent: {
+    paddingBottom: 60, // Adjust this value to match the marginBottom above
   },
 });
 

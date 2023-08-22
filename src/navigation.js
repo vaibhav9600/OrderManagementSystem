@@ -75,20 +75,51 @@ const Navigation = () => {
         <Stack.Screen
           name="Product Details"
           component={ProductDetailsScreen}
+          options={({ navigation }) => ({
+            headerTitle: "",
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <View style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        // marginLeft: -10
+                      }}>
+                        <TouchableOpacity
+                          onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                          style={{ padding: 12 }}
+                        >
+                          <Ionicons name="arrow-back" size={20} color="black" />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate("Shopping Cart")}
+                      style={{ flexDirection: "row" }}
+                    >
+                      <CartHeader itemCount={numberOfItems} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            }
+          })}
         // options={{ presentation: "modal" }}
         />
         <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
         <Stack.Screen name="Filter Page"
-        component={FilterPage}
-        options={({ navigation }) => ({
-          headerTitle: "", // Remove the title "Products"
-          headerShown:"false",
-          header:()=> {
-            return (
-              <></>
-            );
-          }
-        })}
+          component={FilterPage}
+          options={({ navigation }) => ({
+            headerTitle: "", // Remove the title "Products"
+            headerShown: "false",
+            header: () => {
+              return (
+                <></>
+              );
+            }
+          })}
         />
         <Stack.Screen name="Cement Page" component={CementPage}
           options={({ navigation }) => ({
