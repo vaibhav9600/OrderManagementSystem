@@ -1,5 +1,24 @@
-{
-    "warranty": "1 Year Limited Warranty",
-    "specifications": "• Dimensions: 10\" x 6\" x 2\"\n• Weight: 0.5 lbs\n• Material: Stainless Steel",
-    "returnPolicy": "We accept returns within 30 days of purchase. Product must be unused and in original packaging."
-}
+[
+    {
+      "id": 1,
+      "name": "Product A",
+      "warranty": "1 Year Limited Warranty",
+      "specifications": "• Dimensions: 10\" x 6\" x 2\"\n• Weight: 0.5 lbs\n• Material: Stainless Steel",
+      "returnPolicy": "We accept returns within 30 days of purchase. Product must be unused and in original packaging."
+    },
+    {
+      "id": 2,
+      "name": "Product B",
+      "warranty": "2 Years Limited Warranty",
+      "specifications": "• Dimensions: 8\" x 8\" x 2.5\"\n• Weight: 0.8 lbs\n• Material: Aluminum",
+      "returnPolicy": "Returns accepted within 45 days of purchase with original packaging."
+    },
+    {
+      "id": 3,
+      "name": "Product C",
+      "warranty": "90 Days Limited Warranty",
+      "specifications": "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+      "returnPolicy": "Returns allowed within 15 days of purchase. Item must be in unused condition."
+    }
+  ]
+  

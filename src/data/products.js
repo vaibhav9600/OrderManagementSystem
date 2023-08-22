@@ -1,19 +1,24 @@
 export default [
   {
     id: "1",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
     images: [
       "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike1_1.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike1_2.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike1_3.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike1_4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
     ],
     name: "Ultratech Cement",
-    price: 160,
-    originalPrice: 500,
+    brand: "UltraTech",
+    price: 295,
+    originalPrice: 320,
     isOnSale: true,
     sizes: [39, 40, 41],
+    SKU: "A1bC2dE3",
+    warranty: "99 Days Limited Warranty",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -28,20 +33,24 @@ export default [
   },
   {
     id: "2",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2_1.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2_2.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2_3.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2_4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-2.png",
     ],
-    name: "Air Force 1",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 169,
     originalPrice: 500,
     isOnSale: true,
+    SKU: "A1bC2dE3",
     sizes: [39, 40, 41, 42, 43],
+    warranty: "100 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -56,16 +65,23 @@ export default [
   },
   {
     id: "3",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike3.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike3.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-3.png",
     ],
-    name: "Nike Cosmic",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 129,
     originalPrice: 500,
     isOnSale: true,
     sizes: [38, 39, 40, 41, 42],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -80,16 +96,23 @@ export default [
   },
   {
     id: "4",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike4.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-4.png",
     ],
-    name: "Retro High",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 119,
     originalPrice: 500,
     isOnSale: true,
     sizes: [39, 40, 41, 42, 45],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -104,16 +127,23 @@ export default [
   },
   {
     id: "5",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike5.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike5.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-5.png",
     ],
-    name: "Pegas Turbo",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 95,
     originalPrice: 500,
     isOnSale: true,
     sizes: [36, 40, 41, 42, 47],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -128,19 +158,23 @@ export default [
   },
   {
     id: "6",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike6.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike6.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike6.png",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike6.png",
-
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-6.png",
     ],
-    name: "Nike Blazer",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 200,
     originalPrice: 500,
     isOnSale: true,
     sizes: [37, 38, 40, 41, 42],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -156,15 +190,23 @@ export default [
   {
     id: "7",
     // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike7.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike7.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-7.png",
     ],
-    name: "Nike Waffle",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 154,
     originalPrice: 500,
     isOnSale: true,
     sizes: [39, 40, 41],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -179,16 +221,23 @@ export default [
   },
   {
     id: "8",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike8.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike8.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-8.png",
     ],
-    name: "Nike Reax",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 123,
     originalPrice: 500,
     isOnSale: true,
     sizes: [40, 41, 42],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -203,16 +252,23 @@ export default [
   },
   {
     id: "9",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike9.png",
-    image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike9.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-9.png",
     ],
-    name: "Nike Dunk",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 119,
     originalPrice: 500,
     isOnSale: true,
     sizes: [40, 41, 42, 43, 44],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
   
   Advantages:
@@ -227,16 +283,23 @@ export default [
   },
   {
     id: "10",
-    // image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike10.png",
-      image:"/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
+    image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
     images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike10.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
+      "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-10.png",
     ],
-    name: "Nike Air Penny",
+    name: "Ultratech Cement",
+    brand: "UltraTech",
     price: 149,
     originalPrice: 500,
     isOnSale: true,
     sizes: [37, 40, 41, 42],
+    warranty: "90 Days Limited Warranty",
+    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
     description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
     
     Advantages:
@@ -249,148 +312,4 @@ export default [
     
     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
-  // {
-  //   id: "11",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike11.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike11.png",
-  //   ],
-  //   name: "Court Vision",
-  //   price: 132,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 41, 42],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-    
-  //   Advantages:
-  //   - Encapsulated Air-Sole unit for lightweight cushioning.
-  //   - Genuine leather on the upper for durability and a premium look.
-  //   - Solid rubber outsole for greater traction on different types of surfaces.
-  //   - Color Shown: Palomino/White/Wild Berry
-  //   - Model: 553558-215
-  //   - Proven efficacy
-    
-  //   A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
-  // {
-  //   id: "12",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike12.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike12.png",
-  //   ],
-  //   name: "Nike Immortality",
-  //   price: 88,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 40, 41, 45],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-      
-  //     Advantages:
-  //     - Encapsulated Air-Sole unit for lightweight cushioning.
-  //     - Genuine leather on the upper for durability and a premium look.
-  //     - Solid rubber outsole for greater traction on different types of surfaces.
-  //     - Color Shown: Palomino/White/Wild Berry
-  //     - Model: 553558-215
-  //     - Proven efficacy
-      
-  //     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
-  // {
-  //   id: "13",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike13.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike13.png",
-  //   ],
-  //   name: "Nike Aura",
-  //   price: 201,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 41, 42, 45],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-      
-  //     Advantages:
-  //     - Encapsulated Air-Sole unit for lightweight cushioning.
-  //     - Genuine leather on the upper for durability and a premium look.
-  //     - Solid rubber outsole for greater traction on different types of surfaces.
-  //     - Color Shown: Palomino/White/Wild Berry
-  //     - Model: 553558-215
-  //     - Proven efficacy
-      
-  //     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
-  // {
-  //   id: "14",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike14.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike14.png",
-  //   ],
-  //   name: "Nike Zoom",
-  //   price: 104,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 41, 42, 43, 46],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-      
-  //     Advantages:
-  //     - Encapsulated Air-Sole unit for lightweight cushioning.
-  //     - Genuine leather on the upper for durability and a premium look.
-  //     - Solid rubber outsole for greater traction on different types of surfaces.
-  //     - Color Shown: Palomino/White/Wild Berry
-  //     - Model: 553558-215
-  //     - Proven efficacy
-      
-  //     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
-  // {
-  //   id: "15",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike15.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike15.png",
-  //   ],
-  //   name: "Nike Delta",
-  //   price: 128,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 41, 42, 46],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-      
-  //     Advantages:
-  //     - Encapsulated Air-Sole unit for lightweight cushioning.
-  //     - Genuine leather on the upper for durability and a premium look.
-  //     - Solid rubber outsole for greater traction on different types of surfaces.
-  //     - Color Shown: Palomino/White/Wild Berry
-  //     - Model: 553558-215
-  //     - Proven efficacy
-      
-  //     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
-  // {
-  //   id: "16",
-  //   image:
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike16.png",
-  //   images: [
-  //     "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike16.png",
-  //   ],
-  //   name: "Nike React",
-  //   price: 157,
-  //   originalPrice: 500,
-  //   isOnSale: true,
-  //   sizes: [39, 41, 43, 45, 46],
-  //   description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-      
-  //     Advantages:
-  //     - Encapsulated Air-Sole unit for lightweight cushioning.
-  //     - Genuine leather on the upper for durability and a premium look.
-  //     - Solid rubber outsole for greater traction on different types of surfaces.
-  //     - Color Shown: Palomino/White/Wild Berry
-  //     - Model: 553558-215
-  //     - Proven efficacy
-      
-  //     A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
-  // },
 ];

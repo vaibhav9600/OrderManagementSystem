@@ -8,15 +8,18 @@ import FilterPage from "./src/screens/FilterPage";
 import AddressSelection from "./src/screens/CheckoutSection";
 import ProductInfoComponent from "./src/components/productDetailsSub";
 import ProductInfo from "./src/data/ProductInfo.json";
+import products from "./src/data/products";
 
 export default function App() {
+  const productWithId1 = products.find(product => product.id === "1");
+
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.wrapper}>
       {/* <View style={styles.container}> */}
       <Navigation />
       {/* <AddressSelection/> */}
-      {/* <ProductInfoComponent productData={ProductInfo}/> */}
+      {/* <ProductInfoComponent productData={productWithId1} /> */}
       <StatusBar style="auto" />
       {/* </View> */}
       </SafeAreaView>

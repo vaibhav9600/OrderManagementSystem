@@ -1,61 +1,35 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import StarRatingComponent from './RatingBar';
+import CementComponent from './GradeComponent';
 
 const ProductInfoComponent = ({ productData }) => {
-  const [activeTab, setActiveTab] = useState('warranty');
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case 'warranty':
-        return (
-          <ScrollView style={styles.tabContent}>
-            <Text>{productData.warranty}</Text>
-          </ScrollView>
-        );
-      case 'specifications':
-        return (
-          <ScrollView style={styles.tabContent}>
-            <Text>{productData.specifications}</Text>
-          </ScrollView>
-        );
-      case 'returns':
-        return (
-          <ScrollView style={styles.tabContent}>
-            <Text>{productData.returnPolicy}</Text>
-          </ScrollView>
-        );
-      default:
-        return null;
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.tabs}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'warranty' && styles.activeTab]}
-          onPress={() => handleTabChange('warranty')}
-        >
-          <Text style={styles.tabText}>Warranty</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'specifications' && styles.activeTab]}
-          onPress={() => handleTabChange('specifications')}
-        >
-          <Text style={styles.tabText}>Specifications</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'returns' && styles.activeTab]}
-          onPress={() => handleTabChange('returns')}
-        >
-          <Text style={styles.tabText}>Returns</Text>
-        </TouchableOpacity>
+      <View style={styles.info}>
+        <Text style={styles.infoText}>SKU ID</Text>
+        <Text style={styles.infoOut}>{productData.SKU}</Text>
+        <Text style={styles.infoText}>Brand</Text>
+        <Text style={styles.infoOut}>{productData.brand}</Text>
       </View>
-      {renderTabContent()}
+      <Text style={styles.productName}>{productData.name}</Text>
+      <StarRatingComponent />
+      <View style={styles.containerPrice}>
+        <View style={styles.priceContainer}>
+          <Text style={styles.price}>₹{productData.price}</Text>
+          <Text style={styles.originalPrice}>
+            {productData.isOnSale ? `₹${productData.originalPrice}` : ""}
+          </Text>
+          {productData.isOnSale && (
+            <View style={styles.saleTag}>
+              <Text style={styles.saleText}>SALE</Text>
+            </View>
+          )}
+        </View>
+        {/* Other components of the product productData */}
+      </View>
+      <CementComponent />
     </View>
   );
 };
@@ -63,11 +37,32 @@ const ProductInfoComponent = ({ productData }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 16,
+  },
+  info: {
+    flexDirection: "row",
+  },
+  infoText: {
+    fontSize: 12,
+    fontWeight: "400",
+    color: "#8D8D8D",
+    paddingRight: 8,
+  },
+  infoOut: {
+    fontSize: 14,
+    fontWeight: "500",
+    paddingRight: 24,
+    color: "#686868",
+  },
+  productName: {
+    fontSize: 20,
+    fontStyle: "normal",
+    fontWeight: "500",
   },
   tabs: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignproductDatas: 'center',
     backgroundColor: '#f0f0f0',
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -75,7 +70,7 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     paddingVertical: 10,
-    alignItems: 'center',
+    alignproductDatas: 'center',
   },
   activeTab: {
     borderBottomWidth: 2,
@@ -88,6 +83,38 @@ const styles = StyleSheet.create({
   tabContent: {
     flex: 1,
     padding: 20,
+  },
+  containerPrice: {
+    paddingVertical: 16,
+    borderBottomColor: "#ccc",
+  },
+  priceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  price: {
+    fontSize: 26,
+    fontWeight: "500",
+    marginRight: 8,
+    color: "#1D1D1D",
+  },
+  originalPrice: {
+    fontSize: 17,
+    textDecorationLine: "line-through",
+    color: "#8D8D8D",
+    marginRight: 8,
+    fontWeight: "500",
+  },
+  saleTag: {
+    backgroundColor: "#F15927",
+    paddingHorizontal: 4,
+    paddingVertical: 1,
+    borderRadius: 4,
+  },
+  saleText: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 13,
   },
 });
 

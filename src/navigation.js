@@ -79,7 +79,7 @@ const Navigation = () => {
             headerTitle: "",
             header: () => {
               return (
-                <View style={{ paddingVertical: 8, paddingRight: 16, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                <View style={{ paddingVertical: 8, paddingRight: 16, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <View style={{
