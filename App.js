@@ -5,13 +5,15 @@ import Navigation from "./src/navigation";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 import FilterPage from "./src/screens/FilterPage";
+import AddressSelection from "./src/screens/CheckoutSection";
 
 export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.wrapper}>
       {/* <View style={styles.container}> */}
-      <Navigation />
+      {/* <Navigation /> */}
+      <AddressSelection/>
       <StatusBar style="auto" />
       {/* </View> */}
       </SafeAreaView>

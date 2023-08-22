@@ -34,7 +34,7 @@ const FilterPage = () => {
         </View>
         <View style={{ flex: 0.5 }}>
           <TouchableOpacity onPress={clearAllFilters} style={styles.clearButton}>
-            <Text>Clear All</Text>
+            <Text style={{color:"#DF542E", fontWeight:"600"}}>Clear All</Text>
           </TouchableOpacity>
         </View>
       </View>
