@@ -108,7 +108,34 @@ const Navigation = () => {
           })}
         // options={{ presentation: "modal" }}
         />
-        <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
+        <Stack.Screen name="Shopping Cart" component={ShoppingCart}
+          options={({ navigation }) => ({
+            headerTitle: "",
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <View style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}>
+                        <TouchableOpacity
+                          onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                          style={{ padding: 12 }}
+                        >
+                          <Ionicons name="arrow-back" size={20} color="black" />
+                        </TouchableOpacity>
+                        <Text style={{fontSize:17,fontWeight:"500",lineHeight:20}}>Your Cart</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              );
+            }
+          })}
+          
+        />
         <Stack.Screen name="Filter Page"
           component={FilterPage}
           options={({ navigation }) => ({
