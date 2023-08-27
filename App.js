@@ -9,6 +9,7 @@ import AddressSelection from "./src/screens/CheckoutSection";
 import ProductInfoComponent from "./src/components/productDetailsSub";
 import ProductInfo from "./src/data/ProductInfo.json";
 import products from "./src/data/products";
+import FetchRef from "./refSearch";
 
 export default function App() {
   const productWithId1 = products.find(product => product.id === "1");
@@ -16,12 +17,13 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.wrapper}>
-      {/* <View style={styles.container}> */}
-      <Navigation />
-      {/* <AddressSelection/> */}
-      {/* <ProductInfoComponent productData={productWithId1} /> */}
-      <StatusBar style="auto" />
-      {/* </View> */}
+        {/* <View style={styles.container}> */}
+        {/* <Navigation /> */}
+        <FetchRef />
+        {/* <AddressSelection/> */}
+        {/* <ProductInfoComponent productData={productWithId1} /> */}
+        <StatusBar style="auto" />
+        {/* </View> */}
       </SafeAreaView>
     </Provider>
   );
