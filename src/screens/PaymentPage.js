@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import addresses from '../data/addresses';
 import { selectTotalPrice, totalQuantity } from "../store/cartSlice";
 import { useSelector } from "react-redux";
+import paymentMethods from '../data/paymentMethods';
+import CheckoutTop from '../components/checkOutTop';
+import { Ionicons } from '@expo/vector-icons';
 
 const PaymentPage = ({ navigation }) => {
 
@@ -16,33 +18,39 @@ const PaymentPage = ({ navigation }) => {
     };
 
     return (
-        <View style={{ flex: 1 }}>
-            <ScrollView>
-                {addresses.map((address) => (
+        <View style={{ flex: 1, paddingHorizontal: 12, backgroundColor: "white" }}>
+            <ScrollView style={{ marginBottom: 80 }} showsVerticalScrollIndicator={false}>
+                <CheckoutTop numbering={3} varText={"Select a Payment Method"} navigation={navigation} />
+                {paymentMethods.map((payment) => (
                     <TouchableOpacity
-                        key={address.id}
-                        onPress={() => handleCheckBoxClick(address.id)}
+                        key={payment.id}
+                        onPress={() => handleCheckBoxClick(payment.id)}
                         style={{
                             flexDirection: 'row',
                             alignItems: 'center',
-                            padding: 10,
-                            borderBottomWidth: 1,
+                            paddingVertical: 10,
                             borderColor: '#ccc',
-                            backgroundColor: selectedId === address.id ? '#e0e0e0' : 'white',
                         }}
                     >
-                        <Text style={{ marginRight: 10 }}>{address.address}</Text>
-                        <View
-                            style={{
-                                width: 20,
-                                height: 20,
-                                borderWidth: 1,
-                                borderColor: '#000',
-                                borderRadius: 3,
-                                backgroundColor:
-                                    selectedId === address.id ? '#000' : 'transparent',
-                            }}
-                        />
+                        <View style={{
+                            paddingVertical: 12,
+                            flexDirection: "column",
+                            borderColor: 'gray',
+                            padding: 10,
+                            borderRadius: 5,
+                            backgroundColor: selectedId === payment.id ? '#FEF2EE' : '#FAFAFA',
+                        }}>
+                            <View style={{ flexDirection: "row", alignContent: "space-between", paddingBottom: 6 }}>
+                                <View style={[(!(selectedId === payment.id)) && styles.checkbox, (selectedId === payment.id && styles.checkbox2)]}>
+                                    {selectedId === payment.id && (
+                                        <Ionicons name="checkmark-circle-sharp" size={20} color="#F15927" style={{ marginTop: -4, marginLeft: -2 }} />
+                                    )}
+                                </View>
+                            </View>
+                            <View style={styles.addressBox}>
+                                <Text style={{ marginRight: 10, fontSize: 12, fontWeight: "400", color: "#686868" }}>{payment.paymentType}</Text>
+                            </View>
+                        </View>
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -143,6 +151,33 @@ const styles = StyleSheet.create({
         borderColor: "gray",
         paddingHorizontal: 16,
         borderRadius: 5,
+    },
+    addressBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    checkbox: {
+        width: 16,
+        height: 16,
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 7.5,
+        marginLeft: 'auto',
+    },
+    checkbox2: {
+        width: 16,
+        height: 16,
+        // borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 7.5,
+        marginLeft: 'auto',
+    },
+    checkboxInner: {
+        width: 16,
+        height: 16,
+        backgroundColor: 'black',
+        borderRadius: 7.5,
+        alignSelf: 'center',
     },
 });
 
