@@ -39,14 +39,20 @@ const CartListItem = ({ cartItem }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={decreaseQuantity}
-          style={{ padding: 10, backgroundColor: "#FEF2EE", borderRadius:4 }}
+          style={{ padding: 10, backgroundColor: "#FEF2EE", borderRadius: 4 }}
         >
           <AntDesign name="minus" size={24} color="#F15927" />
         </TouchableOpacity>
-        <Text style={styles.quantity}>{cartItem.quantity}</Text>
+        <View style={{ paddingHorizontal: 4 }}>
+          <View
+            style={{ padding: 12, borderWidth: 1, borderColor: "gainsboro", borderRadius:5 }}
+          >
+            <Text style={styles.quantity}>{cartItem.quantity}</Text>
+          </View>
+        </View>
         <TouchableOpacity
           onPress={increaseQuantity}
-          style={{ padding: 10, backgroundColor: "#FEF2EE", borderRadius:4 }}
+          style={{ padding: 10, backgroundColor: "#FEF2EE", borderRadius: 4 }}
         >
           <AntDesign name="plus" size={24} color="#F15927" />
         </TouchableOpacity>
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     // flexDirection: "c",
-    marginBottom:24,
+    marginBottom: 24,
   },
   contentContainer: {
     marginLeft: 10,

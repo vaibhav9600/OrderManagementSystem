@@ -193,7 +193,7 @@ const Navigation = () => {
           options={({ navigation }) => ({
             header: () => {
               return (
-                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <TouchableOpacity
@@ -216,7 +216,7 @@ const Navigation = () => {
           options={({ navigation }) => ({
             header: () => {
               return (
-                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <TouchableOpacity
@@ -239,7 +239,7 @@ const Navigation = () => {
           options={({ navigation }) => ({
             header: () => {
               return (
-                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <TouchableOpacity

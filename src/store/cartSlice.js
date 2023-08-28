@@ -40,6 +40,10 @@ export const selectSubtotals = (state) => state.cart.items.reduce(
     (sum, cartItem) => sum + cartItem.product.price * cartItem.quantity, 0
 );
 
+export const totalQuantity = (state) => state.cart.items.reduce(
+    (total, cartItem) => total + cartItem.quantity, 0
+);
+
 const cartSelector = (state) => state.cart;
 
 export const selectDeliveryPrice = createSelector(

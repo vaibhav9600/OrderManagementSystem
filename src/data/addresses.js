@@ -1,49 +1,92 @@
 export default [
     {
         "id": 1,
-        "address": "123 Main St",
+        "addressTitle":"AR Traders Site",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City1",
         "isSelected": false
     },
     {
         "id": 2,
-        "address": "456 Elm St",
+        "addressTitle":"AR Traders Site 1",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City2",
         "isSelected": false
     },
     {
         "id": 3,
-        "address": "123 Main St",
+        "addressTitle":"AR Traders Site 2",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City1",
         "isSelected": false
     },
     {
         "id": 4,
-        "address": "456 Elm St",
+        "addressTitle":"AR Traders Sarjapur Road",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City2",
         "isSelected": false
     },
     {
         "id": 5,
-        "address": "123 Main St",
+        "addressTitle":"AR Traders Koramangala Road",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City1",
         "isSelected": false
     },
     {
         "id": 6,
-        "address": "456 Elm St",
+        "addressTitle":"AR Traders Whitefield",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City2",
         "isSelected": false
     },
     {
         "id": 7,
-        "address": "123 Main St",
+        "addressTitle":"AR Traders Marathali",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City1",
         "isSelected": false
     },
     {
         "id": 8,
-        "address": "456 Elm St",
+        "addressTitle":"AR Traders Honnur",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
+        "city": "City2",
+        "isSelected": false
+    },
+    {
+        "id": 9,
+        "addressTitle":"AR Traders Satellite",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
+        "city": "City2",
+        "isSelected": false
+    },
+    {
+        "id": 10,
+        "addressTitle":"AR Traders OFN",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
+        "city": "City2",
+        "isSelected": false
+    },
+    {
+        "id": 11,
+        "addressTitle":"AR Traders OFN",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
+        "city": "City2",
+        "isSelected": false
+    },
+    {
+        "id": 12,
+        "addressTitle":"AR Traders OFN",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
+        "city": "City2",
+        "isSelected": false
+    },
+    {
+        "id": 13,
+        "addressTitle":"AR Traders OFN",
+        "address": "Sy. No. 95/1, Choudadenahalli, village, Dommasandra Post, sarjapura holi, Anekal Taluk, Bengaluru, Karnataka 562125",
         "city": "City2",
         "isSelected": false
     },

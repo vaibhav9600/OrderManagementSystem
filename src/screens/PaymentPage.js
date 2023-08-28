@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import addresses from '../data/addresses';
-import { selectTotalPrice } from "../store/cartSlice";
+import { selectTotalPrice, totalQuantity } from "../store/cartSlice";
 import { useSelector } from "react-redux";
 
 const PaymentPage = ({ navigation }) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
+    const cartTotalQuantity = useSelector(totalQuantity);
 
 
     const handleCheckBoxClick = (id) => {
@@ -49,7 +50,7 @@ const PaymentPage = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Shopping Cart")}>
                     <Text style={styles.buttonText}>PLACE ORDER</Text>
                 </TouchableOpacity>
             </View>
