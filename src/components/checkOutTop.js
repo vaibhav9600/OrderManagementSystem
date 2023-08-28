@@ -3,15 +3,15 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useSelector } from "react-redux";
 import { totalQuantity, selectTotalPrice } from '../store/cartSlice';
 
-const CheckoutTop = ({ numbering, varText, navigation }) => {
+const CheckoutTop = ({ numbering, varText, navigation, renderSecondContainer = true }) => {
     const totalQ = useSelector(totalQuantity);
     const totalPrice = useSelector(selectTotalPrice);
     const imageAddress = "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png";
     return (
         <View style={{ flex: 1, }}>
-            <View style={{ paddingVertical: 8, borderWidth: 1, borderRadius: 4, borderColor:"gainsboro", marginVertical:16 }}>
+            <View style={{ paddingVertical: 8, borderWidth: 1, borderRadius: 4, borderColor: "gainsboro", marginVertical: 16 }}>
                 <View style={{ flexDirection: "row", paddingVertical: 10 }}>
-                    <View style={{ paddingHorizontal: 12, paddingVertical: 0 , flexDirection:"row"}}>
+                    <View style={{ paddingHorizontal: 12, paddingVertical: 0, flexDirection: "row" }}>
                         <View style={{ padding: 8, backgroundColor: "#FAFAFA", borderRadius: 5 }}>
                             <Image source={{ uri: imageAddress }} style={styles.image} />
                         </View>
@@ -27,12 +27,14 @@ const CheckoutTop = ({ numbering, varText, navigation }) => {
                     </View>
                 </View>
             </View>
-            <View style={styles.secondContainer}>
-                <View style={styles.circle}>
-                    <Text style={styles.number}>{numbering}</Text>
+            {renderSecondContainer && (
+                <View style={styles.secondContainer}>
+                    <View style={styles.circle}>
+                        <Text style={styles.number}>{numbering}</Text>
+                    </View>
+                    <Text style={styles.text}>{varText}</Text>
                 </View>
-                <Text style={styles.text}>{varText}</Text>
-            </View>
+            )}
         </View >
     );
 };

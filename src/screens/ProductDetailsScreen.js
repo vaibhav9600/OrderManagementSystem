@@ -56,7 +56,7 @@ const ProductDetailsScreen = () => {
   const addToCart = () => {
     dispatch(cartSlice.actions.addCartItem({ product: product, quantity: quantity }));
   };
-  
+
   const [isWishlistPressed, setIsWishlistPressed] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
 
@@ -74,7 +74,9 @@ const ProductDetailsScreen = () => {
   return (
     <SafeAreaView>
       <View style={{ backgroundColor: "white", }}>
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
           {/* Image Carousel */}
           <FlatList
             ref={mainImageCarouselRef}

@@ -153,6 +153,7 @@ const ProductScreen = ({ navigation }) => {
         initialScrollIndex={0}
         data={data}
         ListHeaderComponent={HeaderMove}
+        showsVerticalScrollIndicator={false}
         removeClippedSubviews={false} // Add this line
         renderItem={({ item }) => (
           <Pressable

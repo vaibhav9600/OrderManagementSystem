@@ -23,6 +23,7 @@ import { useNavigationState } from "@react-navigation/native";
 import ShippingAddress from "./screens/CheckoutSection";
 import BillingAddress from "./screens/BillingAddress";
 import PaymentPage from "./screens/PaymentPage";
+import FinalPage from "./screens/FinalPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -249,6 +250,28 @@ const Navigation = () => {
                         <Ionicons name="arrow-back" size={24} color="black" />
                       </TouchableOpacity>
                       <Text style={{ fontSize: 17, fontWeight: "500", lineHeight: 20 }}>Checkout</Text>
+                    </View>
+                  </View>
+                </View>
+              );
+            },
+          })}
+        />
+        <Stack.Screen
+          name="Final Screen"
+          component={FinalPage}
+          options={({ navigation }) => ({
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "#e6e6e6", borderBottomWidth: 1, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                        style={{ paddingHorizontal: 10 }}
+                      >
+                        <Ionicons name="arrow-back" size={24} color="black" />
+                      </TouchableOpacity>
                     </View>
                   </View>
                 </View>

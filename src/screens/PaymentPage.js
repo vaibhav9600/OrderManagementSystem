@@ -58,7 +58,7 @@ const PaymentPage = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Shopping Cart")}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Final Screen")}>
                     <Text style={styles.buttonText}>PLACE ORDER</Text>
                 </TouchableOpacity>
             </View>
