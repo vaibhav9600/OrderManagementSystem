@@ -58,7 +58,7 @@ const FetchRef = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [products]);
 
     return (
         <View>

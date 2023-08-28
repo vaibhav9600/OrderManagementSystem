@@ -1,6 +1,6 @@
 export default [
   {
-    id: "1",
+    "id": 1,
     image: "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
     images: [
       "/Users/vaibhavmishra/project/oms/OrderMS/assets/product-images/cement-1.png",
@@ -14,22 +14,10 @@ export default [
     price: 295,
     originalPrice: 320,
     isOnSale: true,
-    sizes: [39, 40, 41],
-    SKU: "A1bC2dE3",
+    sku: "A1bC2dE3",
     warranty: "99 Days Limited Warranty",
     details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "2",
@@ -46,22 +34,10 @@ export default [
     price: 169,
     originalPrice: 500,
     isOnSale: true,
-    SKU: "A1bC2dE3",
-    sizes: [39, 40, 41, 42, 43],
+    sku: "A1bC2dE3",
     warranty: "100 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "3",
@@ -78,21 +54,9 @@ export default [
     price: 129,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [38, 39, 40, 41, 42],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "4",
@@ -109,21 +73,9 @@ export default [
     price: 119,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [39, 40, 41, 42, 45],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "5",
@@ -140,21 +92,9 @@ export default [
     price: 95,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [36, 40, 41, 42, 47],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "6",
@@ -171,21 +111,9 @@ export default [
     price: 200,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [37, 38, 40, 41, 42],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "7",
@@ -203,21 +131,9 @@ export default [
     price: 154,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [39, 40, 41],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "8",
@@ -234,21 +150,9 @@ export default [
     price: 123,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [40, 41, 42],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "9",
@@ -265,21 +169,9 @@ export default [
     price: 119,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [40, 41, 42, 43, 44],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-  
-  Advantages:
-  - Encapsulated Air-Sole unit for lightweight cushioning.
-  - Genuine leather on the upper for durability and a premium look.
-  - Solid rubber outsole for greater traction on different types of surfaces.
-  - Color Shown: Palomino/White/Wild Berry
-  - Model: 553558-215
-  - Proven efficacy
-  
-  A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
   {
     id: "10",
@@ -296,20 +188,8 @@ export default [
     price: 149,
     originalPrice: 500,
     isOnSale: true,
-    sizes: [37, 40, 41, 42],
     warranty: "90 Days Limited Warranty",
-    details: "• Dimensions: 5\" x 5\" x 5\"\n• Weight: 1 lb\n• Material: Plastic",
+    details: "Smart WiFi Fan Regulator Touch Switch: Dual colored LED indication makes it easy to know switch state, backlight LED helps you to locate switches in darkness. Standard modular switches can be fit in any 48mm standard modular switch plates (Best Suitable with ROMA Plates). Modular type switches gives the user complete independence of choosing switches & change as per standard.",
     returnPolicy: "Returns allowed within 15 days of purchase. Item must be in unused condition.",
-    description: `Inspired by the original that debuted in 1985, the Air Jordan 1 Low delivers a clean, classic look that's familiar yet fresh. With an iconic design that blends seamlessly with any fit, these shoes are perfect for taking charge.
-    
-    Advantages:
-    - Encapsulated Air-Sole unit for lightweight cushioning.
-    - Genuine leather on the upper for durability and a premium look.
-    - Solid rubber outsole for greater traction on different types of surfaces.
-    - Color Shown: Palomino/White/Wild Berry
-    - Model: 553558-215
-    - Proven efficacy
-    
-    A timeless rubber sole combines with a soft sockliner and encapsulated Nike Air cushioning for all-day comfort. The rubber outsole offers durable traction on a variety of surfaces.`,
   },
 ];

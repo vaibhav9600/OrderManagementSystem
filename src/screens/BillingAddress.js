@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, ScrollView,StyleSheet } from 'react-native';
 import addresses from '../data/addresses';
 import { selectTotalPrice } from "../store/cartSlice";
 import { useSelector } from "react-redux";
 
-
-const ShippingAddress = ({ navigation }) => {
+const BillingAddress = ({navigation}) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
-
 
     const handleCheckBoxClick = (id) => {
         setSelectedId(id);
@@ -50,14 +48,13 @@ const ShippingAddress = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Billing Screen")}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Payment Screen")}>
                     <Text style={styles.buttonText}>CONTINUE</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     totalsContainer: {
@@ -147,4 +144,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ShippingAddress;
+export default BillingAddress;

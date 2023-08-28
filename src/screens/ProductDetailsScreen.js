@@ -21,6 +21,8 @@ import products from "../data/products";
 import { MaterialIcons } from '@expo/vector-icons';
 
 const ProductDetailsScreen = () => {
+
+
   const product = useSelector((state) => state.products.selectedProduct);
   const { width } = useWindowDimensions();
   const dispatch = useDispatch();
@@ -29,13 +31,13 @@ const ProductDetailsScreen = () => {
   const mainImageCarouselRef = useRef(null);
 
   const handlePrevImage = () => {
-    const newIndex = currentImageIndex === 0 ? product.images.length - 1 : currentImageIndex - 1;
+    const newIndex = currentImageIndex === 0 ? imagesArray.length - 1 : currentImageIndex - 1;
     setCurrentImageIndex(newIndex);
     mainImageCarouselRef.current.scrollToIndex({ index: newIndex });
   };
 
   const handleNextImage = () => {
-    const newIndex = currentImageIndex === product.images.length - 1 ? 0 : currentImageIndex + 1;
+    const newIndex = currentImageIndex === imagesArray.length - 1 ? 0 : currentImageIndex + 1;
     setCurrentImageIndex(newIndex);
     mainImageCarouselRef.current.scrollToIndex({ index: newIndex });
   };
@@ -52,9 +54,9 @@ const ProductDetailsScreen = () => {
   };
 
   const addToCart = () => {
-    // console.log("add to cart pressed");`
     dispatch(cartSlice.actions.addCartItem({ product: product, quantity: quantity }));
   };
+  
   const [isWishlistPressed, setIsWishlistPressed] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
 
@@ -67,6 +69,8 @@ const ProductDetailsScreen = () => {
     }, 2000); // Display status for 2 seconds
   };
 
+  const imagesArray = [product.image1, product.image2, product.image3, product.image4, product.image5];
+
   return (
     <SafeAreaView>
       <View style={{ backgroundColor: "white", }}>
@@ -74,7 +78,7 @@ const ProductDetailsScreen = () => {
           {/* Image Carousel */}
           <FlatList
             ref={mainImageCarouselRef}
-            data={product.images}
+            data={imagesArray}
             renderItem={({ item }) => (
               <Image source={{ uri: item }} style={{ width, aspectRatio: 1 }} />
             )}
@@ -95,13 +99,13 @@ const ProductDetailsScreen = () => {
             <View>
               <FlatList
                 data={[
-                  product.images[currentImageIndex],
-                  product.images[(currentImageIndex + 1) % product.images.length],
+                  imagesArray[currentImageIndex],
+                  imagesArray[(currentImageIndex + 1) % imagesArray.length],
                 ]}
                 renderItem={({ item, index }) => (
                   <TouchableOpacity
                     onPress={() =>
-                      setCurrentImageIndex((currentImageIndex + index) % product.images.length)
+                      setCurrentImageIndex((currentImageIndex + index) % imagesArray.length)
                     }
                     style={styles.secondaryImageContainer}
                   >

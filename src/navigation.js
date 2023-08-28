@@ -20,6 +20,9 @@ import { useState } from "react";
 import { productSlice } from "./store/productSlice";
 import { useRef, useEffect } from "react-redux";
 import { useNavigationState } from "@react-navigation/native";
+import ShippingAddress from "./screens/CheckoutSection";
+import BillingAddress from "./screens/BillingAddress";
+import PaymentPage from "./screens/PaymentPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -108,7 +111,9 @@ const Navigation = () => {
           })}
         // options={{ presentation: "modal" }}
         />
-        <Stack.Screen name="Shopping Cart" component={ShoppingCart}
+        <Stack.Screen
+          name="Shopping Cart"
+          component={ShoppingCart}
           options={({ navigation }) => ({
             headerTitle: "",
             header: () => {
@@ -126,7 +131,7 @@ const Navigation = () => {
                         >
                           <Ionicons name="arrow-back" size={20} color="black" />
                         </TouchableOpacity>
-                        <Text style={{fontSize:17,fontWeight:"500",lineHeight:20}}>Your Cart</Text>
+                        <Text style={{ fontSize: 17, fontWeight: "500", lineHeight: 20 }}>Your Cart</Text>
                       </View>
                     </View>
                   </View>
@@ -134,7 +139,7 @@ const Navigation = () => {
               );
             }
           })}
-          
+
         />
         <Stack.Screen name="Filter Page"
           component={FilterPage}
@@ -148,7 +153,9 @@ const Navigation = () => {
             }
           })}
         />
-        <Stack.Screen name="Cement Page" component={CementPage}
+        <Stack.Screen
+          name="Cement Page"
+          component={CementPage}
           options={({ navigation }) => ({
             header: () => {
               return (
@@ -174,6 +181,75 @@ const Navigation = () => {
                     >
                       <CartHeader itemCount={numberOfItems} />
                     </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            },
+          })}
+        />
+        <Stack.Screen
+          name="Checkout Screen"
+          component={ShippingAddress}
+          options={({ navigation }) => ({
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                        style={{ paddingHorizontal: 10 }}
+                      >
+                        <Ionicons name="arrow-back" size={24} color="black" />
+                      </TouchableOpacity>
+                      <Text style={{ fontSize: 17, fontWeight: "500", lineHeight: 20 }}>Checkout</Text>
+                    </View>
+                  </View>
+                </View>
+              );
+            },
+          })}
+        />
+        <Stack.Screen
+          name="Billing Screen"
+          component={BillingAddress}
+          options={({ navigation }) => ({
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                        style={{ paddingHorizontal: 10 }}
+                      >
+                        <Ionicons name="arrow-back" size={24} color="black" />
+                      </TouchableOpacity>
+                      <Text style={{ fontSize: 17, fontWeight: "500", lineHeight: 20 }}>Checkout</Text>
+                    </View>
+                  </View>
+                </View>
+              );
+            },
+          })}
+        />
+        <Stack.Screen
+          name="Payment Screen"
+          component={PaymentPage}
+          options={({ navigation }) => ({
+            header: () => {
+              return (
+                <View style={{ paddingVertical: 8, paddingRight: 16, paddingLeft: 4, borderBottomColor: "white", borderBottomWidth: 0, }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                        style={{ paddingHorizontal: 10 }}
+                      >
+                        <Ionicons name="arrow-back" size={24} color="black" />
+                      </TouchableOpacity>
+                      <Text style={{ fontSize: 17, fontWeight: "500", lineHeight: 20 }}>Checkout</Text>
+                    </View>
                   </View>
                 </View>
               );

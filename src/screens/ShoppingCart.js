@@ -58,7 +58,7 @@ const ShoppingCartTotals = () => {
   );
 }
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector(selectTotalPrice);
 
@@ -75,7 +75,7 @@ const ShoppingCart = () => {
         <View style={styles.totalContainer}>
           <Text style={styles.totalText}>₹ {totalPrice}</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Checkout Screen")}>
           <Text style={styles.buttonText}>CHECKOUT</Text>
         </TouchableOpacity>
       </View>

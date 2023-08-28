@@ -14,6 +14,12 @@ import (
 )
 
 type Product struct {
+	Image         string `json:"image"`
+	Image1        string `json:"image1"`
+	Image2        string `json:"image2"`
+	Image3        string `json:"image3"`
+	Image4        string `json:"image4"`
+	Image5        string `json:"image5"`
 	Name          string `json:"name"`
 	Brand         string `json:"brand"`
 	Price         uint   `json:"price"`
@@ -21,8 +27,8 @@ type Product struct {
 	IsOnSale      bool   `json:"isOnSale"`
 	SKU           string `json:"sku"`
 	Warranty      string `json:"warranty"`
+	Details       string `json:"details"`
 	ReturnPolicy  string `json:"returnPolicy"`
-	Description   string `json:"description"`
 }
 
 type Repository struct {
@@ -121,10 +127,11 @@ func (r *Repository) GetProductByID(context *fiber.Ctx) error {
 
 func (r *Repository) SetupRoutes(app *fiber.App) {
 	api := app.Group("/api")
-	api.Post("/create_cart", r.CreateProduct)
-	api.Delete("/delete_cart/:id", r.DeleteProduct)
+	api.Post("/create_product", r.CreateProduct)
+	api.Delete("/delete_product/:id", r.DeleteProduct)
 	api.Get("/get_products/:id", r.GetProductByID)
 	api.Get("/products", r.GetProducts)
+	// api.Post("/create_order",r.CreateOrder)
 }
 
 func main() {

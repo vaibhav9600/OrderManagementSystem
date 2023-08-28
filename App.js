@@ -10,6 +10,7 @@ import ProductInfoComponent from "./src/components/productDetailsSub";
 import ProductInfo from "./src/data/ProductInfo.json";
 import products from "./src/data/products";
 import FetchRef from "./refSearch";
+import Checkout from "./src/screens/CheckoutSection";
 
 export default function App() {
   const productWithId1 = products.find(product => product.id === "1");
@@ -18,8 +19,9 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaView style={styles.wrapper}>
         {/* <View style={styles.container}> */}
-        {/* <Navigation /> */}
-        <FetchRef />
+        <Navigation />
+        {/* <Checkout/> */}
+        {/* <FetchRef /> */}
         {/* <AddressSelection/> */}
         {/* <ProductInfoComponent productData={productWithId1} /> */}
         <StatusBar style="auto" />

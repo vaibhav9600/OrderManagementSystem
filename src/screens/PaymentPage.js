@@ -4,8 +4,7 @@ import addresses from '../data/addresses';
 import { selectTotalPrice } from "../store/cartSlice";
 import { useSelector } from "react-redux";
 
-
-const ShippingAddress = ({ navigation }) => {
+const PaymentPage = ({ navigation }) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
@@ -50,14 +49,13 @@ const ShippingAddress = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Billing Screen")}>
-                    <Text style={styles.buttonText}>CONTINUE</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>PLACE ORDER</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     totalsContainer: {
@@ -147,4 +145,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ShippingAddress;
+export default PaymentPage;

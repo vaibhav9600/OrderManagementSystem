@@ -19,6 +19,22 @@ import ListProductTypes from '../components/ListProductTypes';
 import { useState, useRef, useEffect } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { updateProducts, setSelectedProducts } from "../store/productSlice";
+import ShoppingCart from './ShoppingCart';
+
+
+const serverURL = 'http://192.168.1.8:8080/api';
+
+// Fetching all products
+const getProducts = async () => {
+  try {
+    const response = await fetch(`${serverURL}/products`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
 
 const ProductScreen = ({ navigation }) => {
 
@@ -49,7 +65,7 @@ const ProductScreen = ({ navigation }) => {
     );
   };
 
-  const products = useSelector((state) => state.products.products);
+  // const products = useSelector((state) => state.products.products);
 
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -57,6 +73,7 @@ const ProductScreen = ({ navigation }) => {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [showBackground, setShowBackground] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const dispatch = useDispatch();
   const searchRef = useRef();
@@ -64,11 +81,19 @@ const ProductScreen = ({ navigation }) => {
   const flatListRef = useRef(null);
   const scrollViewRef = useRef();
 
+  
+
   useEffect(() => {
-    // Initialize data with locally available products
-    setData(products);
-    setOldData(products);
+    const fetchProducts = async () => {
+      const productsData = await getProducts();
+      setProducts(productsData.data);
+      setData(productsData.data);
+      setOldData(productsData.data);
+      dispatch(updateProducts(productsData.data));
+    };
+    fetchProducts();
   }, []);
+
 
   const searchFilterFunction = text => {
     setSearch(text);
