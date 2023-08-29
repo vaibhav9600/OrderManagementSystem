@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
 import { updatePaymentMethod } from '../store/addressSlice';
+import { selectProductsWithQuantities } from '../store/cartSlice';
 
 const serverURL = 'http://127.0.0.1:8080/api';
 
@@ -18,12 +19,92 @@ const getAddress = async () => {
     }
 };
 
+const createCartItemsBatch = async (cartItems) => {
+    try {
+        const response = await fetch(`${serverURL}/create_cartItems_batch`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(cartItems),
+        });
+        if (response.ok) {
+            console.log('cartItems added successfully');
+            // You can perform additional actions here after successful cart items addition
+        } else {
+            console.error('Failed to create cartItems');
+        }
+    } catch (error) {
+        console.error('Error creating cartItems:', error);
+    }
+};
+
+const addInvoice = async (invoiceData) => {
+    try {
+        const response = await fetch(`${serverURL}/create_invoice`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(invoiceData),
+        });
+        if (response.ok) {
+            console.log('invoice added successfully');
+            // You can perform additional actions here after successful booking addition
+        } else {
+            console.error('Failed to create invoice');
+        }
+    } catch (error) {
+        console.error('Error creating invoice:', error);
+    }
+};
+
+const getInvoiceID = async () => {
+    try {
+        const response = await fetch(`${serverURL}/get_invoice_id`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching invoice id:', error);
+    }
+};
+
 const PaymentPage = ({ navigation }) => {
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
     const cartTotalQuantity = useSelector(totalQuantity);
     const dispatch = useDispatch();
+    const [invoiceID, setInvoiceID] = useState(null);
     const [paymentMethods, setPaymentMethods] = useState([]);
+    const productsWithQuantities = useSelector(selectProductsWithQuantities);
+    const shipping_add = useSelector((state) => state.address.selectedShippingAddress);
+    const billing_add = useSelector((state) => state.address.selectedBillingAddress);
+    const payment_met = useSelector((state) => state.address.selectedPaymentMethod);
+
+    const invoiceData = {
+        bill_add_id: shipping_add,
+        ship_add_id: billing_add,
+        payment_id: payment_met
+    };
+
+    const handlePlaceOrder = async () => {
+        if (totalPrice !== 0) {
+            await addInvoice(invoiceData); // Wait for addInvoice to complete
+            const newInvoiceID = await getInvoiceID();
+            setInvoiceID(newInvoiceID.data.data); // Update the invoice ID state
+
+            const productsWithInvoiceId = productsWithQuantities.map((product) => ({
+                ...product,
+                invoice_id: 13,
+            }));
+
+            console.log(productsWithInvoiceId);
+            await createCartItemsBatch(productsWithInvoiceId);
+
+            navigation.navigate("Final Screen");
+        }
+    };
+
 
     useEffect(() => {
         const fetchPayment = async () => {
@@ -39,7 +120,7 @@ const PaymentPage = ({ navigation }) => {
             }
         };
         fetchPayment();
-    }, []);
+    }, [invoiceData]);
 
     const handleCheckBoxClick = (id) => {
         dispatch(updatePaymentMethod(id));
@@ -93,12 +174,10 @@ const PaymentPage = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={[styles.button, { backgroundColor: totalPrice === 0 ? 'gray' : '#F15927' }]}
-                    onPress={() => {
-                        if (totalPrice !== 0) {
-                            navigation.navigate("Final Screen");
-                        }
-                    }}
+                <TouchableOpacity
+                    style={[styles.button,
+                    { backgroundColor: totalPrice === 0 ? 'gray' : '#F15927' }]}
+                    onPress={handlePlaceOrder}
                     disabled={totalPrice === 0}>
                     <Text style={styles.buttonText}>PLACE ORDER</Text>
                 </TouchableOpacity>

@@ -44,16 +44,15 @@ type billingAdd struct {
 }
 
 type cartItem struct {
-	ProdID   uint `json:"prod_id"`
-	OrderID  uint `json:"order_id"`
-	Quantity int  `json:"quantity"`
+	ProdID    uint `json:"prod_id"`
+	Quantity  int  `json:"quantity"`
+	InvoiceID int  `json:"invoice_id"`
 }
 
 type invoice struct {
-	BillAddID uint `json:"billAdd_id"`
-	ShipAddID uint `json:"shipAdd_id"`
+	BillAddID uint `json:"bill_add_id"`
+	ShipAddID uint `json:"ship_add_id"`
 	PaymentID uint `json:"payment_id"`
-	OrderID   uint `json:"order_id"`
 }
 
 type paymentMethod struct {
@@ -179,26 +178,38 @@ func (r *Repository) CreateInvoice(context *fiber.Ctx) error {
 	return nil
 }
 
-func (r *Repository) CreateCartItems(context *fiber.Ctx) error {
-	cartItem_ := cartItem{}
+func (r *Repository) CreateCartItemsBatch(context *fiber.Ctx) error {
+	cartItems := []cartItem{}
 
-	err := context.BodyParser(&cartItem_)
-
+	err := context.BodyParser(&cartItems)
 	if err != nil {
 		context.Status(http.StatusUnprocessableEntity).JSON(
 			&fiber.Map{"message": "request failed"})
 		return err
 	}
 
-	err = r.DB.Create(&cartItem_).Error
-	if err != nil {
-		context.Status(http.StatusBadRequest).JSON(
-			&fiber.Map{"message": "could not create cartItem"})
-		return err
+	tx := r.DB.Begin() // Start a transaction
+
+	var createErrors []error
+
+	for _, item := range cartItems {
+		err := tx.Create(&item).Error
+		if err != nil {
+			createErrors = append(createErrors, err)
+		}
 	}
 
+	if len(createErrors) > 0 {
+		tx.Rollback() // Roll back the transaction if any errors occurred
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not create cartItems", "errors": createErrors})
+		return nil
+	}
+
+	tx.Commit() // Commit the transaction if all items were created successfully
+
 	context.Status(http.StatusOK).JSON(&fiber.Map{
-		"message": "cartItem has been added"})
+		"message": "cartItems have been added"})
 	return nil
 }
 
@@ -351,7 +362,7 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 
 	api.Post("/create_invoice", r.CreateInvoice)
 	api.Get("/get_invoice_id", r.GetInvoiceID)
-	api.Post("/create_cartItems", r.CreateCartItems)
+	api.Post("/create_cartItems_batch", r.CreateCartItemsBatch)
 }
 
 func main() {

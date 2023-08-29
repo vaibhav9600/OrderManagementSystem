@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     selectedShippingAddress: null,
     selectedBillingAddress: null,
-    selectedPaymentMethod:null,
+    selectedPaymentMethod: null,
 };
 
 export const addressSlice = createSlice({
@@ -16,11 +16,11 @@ export const addressSlice = createSlice({
         updateBillingAddress: (state, action) => {
             state.selectedBillingAddress = action.payload
         },
-        updatePaymentMethod:(state,action)=>{
-            state.selectedPaymentMethod=action.payload
+        updatePaymentMethod: (state, action) => {
+            state.selectedPaymentMethod = action.payload
         }
     },
 })
 
-export const { updateShippingAddress, updateBillingAddress,updatePaymentMethod } = addressSlice.actions;
+export const { updateShippingAddress, updateBillingAddress, updatePaymentMethod } = addressSlice.actions;
 export default addressSlice.reducer;

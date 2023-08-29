@@ -58,6 +58,13 @@ export const selectDeliveryPrice = createSelector(
     }
 );
 
+const cartItemsSelector = (state) => state.cart.items;
+
+export const selectProductsWithQuantities = createSelector(
+    cartItemsSelector,
+    (cartItems) => cartItems.map((item) => ({ prod_id: item.product.id, quantity: item.quantity }))
+);
+
 export const selectTotalPrice = createSelector(
     selectDeliveryPrice,
     selectSubtotals,
