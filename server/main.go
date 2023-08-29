@@ -56,10 +56,6 @@ type billingAdd struct {
 // 	OrderID   uint `json:"order_id"`
 // }
 
-// type order struct {
-// 	OrderID uint `json:"order_id"`
-// }
-
 type paymentMethod struct {
 	Type string `json:"type"`
 }
