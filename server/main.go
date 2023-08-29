@@ -43,18 +43,18 @@ type billingAdd struct {
 	IsSelected   bool   `json:"isSelected"`
 }
 
-// type cartItem struct {
-// 	ProdID   uint `json:"prod_id"`
-// 	OrderID  uint `json:"order_id"`
-// 	Quantity int  `json:"quantity"`
-// }
+type cartItem struct {
+	ProdID   uint `json:"prod_id"`
+	OrderID  uint `json:"order_id"`
+	Quantity int  `json:"quantity"`
+}
 
-// type invoice struct {
-// 	BillAddID uint `json:"billAdd_id"`
-// 	ShipAddID uint `json:"shipAdd_id"`
-// 	PaymentID uint `json:"payment_id"`
-// 	OrderID   uint `json:"order_id"`
-// }
+type invoice struct {
+	BillAddID uint `json:"billAdd_id"`
+	ShipAddID uint `json:"shipAdd_id"`
+	PaymentID uint `json:"payment_id"`
+	OrderID   uint `json:"order_id"`
+}
 
 type paymentMethod struct {
 	Type string `json:"type"`
@@ -156,6 +156,52 @@ func (r *Repository) CreatePaymentMethod(context *fiber.Ctx) error {
 	return nil
 }
 
+func (r *Repository) CreateInvoice(context *fiber.Ctx) error {
+	invoice_ := invoice{}
+
+	err := context.BodyParser(&invoice_)
+
+	if err != nil {
+		context.Status(http.StatusUnprocessableEntity).JSON(
+			&fiber.Map{"message": "request failed"})
+		return err
+	}
+
+	err = r.DB.Create(&invoice_).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not create invoice"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "invoice has been added"})
+	return nil
+}
+
+func (r *Repository) CreateCartItems(context *fiber.Ctx) error {
+	cartItem_ := cartItem{}
+
+	err := context.BodyParser(&cartItem_)
+
+	if err != nil {
+		context.Status(http.StatusUnprocessableEntity).JSON(
+			&fiber.Map{"message": "request failed"})
+		return err
+	}
+
+	err = r.DB.Create(&cartItem_).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not create cartItem"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "cartItem has been added"})
+	return nil
+}
+
 func (r *Repository) DeleteProduct(context *fiber.Ctx) error {
 	productModel := models.Products{}
 	id := context.Params("id")
@@ -248,6 +294,22 @@ func (r *Repository) GetBilling(context *fiber.Ctx) error {
 	return nil
 }
 
+func (r *Repository) GetInvoiceID(context *fiber.Ctx) error {
+	var latestInvoiceID uint
+	if err := r.DB.Raw("SELECT id FROM invoices ORDER BY id DESC LIMIT 1").Scan(&latestInvoiceID).Error; err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "could not fetch latest invoice ID",
+		})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "latest invoice ID fetched successfully",
+		"data":    latestInvoiceID,
+	})
+	return nil
+}
+
 func (r *Repository) GetProductByID(context *fiber.Ctx) error {
 
 	id := context.Params("id")
@@ -286,6 +348,10 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 	api.Get("/billing_addresses", r.GetBilling)
 	api.Post("/create_payment_method", r.CreatePaymentMethod)
 	api.Get("/payment_methods", r.GetPaymentMethods)
+
+	api.Post("/create_invoice", r.CreateInvoice)
+	api.Get("/get_invoice_id", r.GetInvoiceID)
+	api.Post("/create_cartItems", r.CreateCartItems)
 }
 
 func main() {
@@ -332,11 +398,6 @@ func main() {
 	err = models.MigrateInvoices(db)
 	if err != nil {
 		log.Fatal("could not migrate invoices table")
-	}
-
-	err = models.MigrateOrders(db)
-	if err != nil {
-		log.Fatal("could not migrate order table")
 	}
 
 	err = models.MigratePaymentMethods(db)
