@@ -23,7 +23,8 @@ import { updateProducts, setSelectedProducts } from "../store/productSlice";
 import ShoppingCart from './ShoppingCart';
 
 
-const serverURL = 'http://10.44.1.91:8080/api';
+const serverURL = 'http://127.0.0.1:8080/api';
+// const serverURL = 'http://192.168.1.8:8080/api';
 
 // Fetching all products
 const getProducts = async () => {

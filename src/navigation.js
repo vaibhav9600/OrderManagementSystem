@@ -40,6 +40,7 @@ const Navigation = () => {
             borderWidth: 0, // Remove the border line under the header
             elevation: 0,
           },
+          contentStyle: { backgroundColor: "white" },//all screens white
         }}>
         <Stack.Screen
           name="Products"

@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import addresses from '../data/addresses';
 import { selectTotalPrice } from "../store/cartSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
+import { updateShippingAddress } from '../store/addressSlice';
 
+const serverURL = 'http://127.0.0.1:8080/api';
+
+const getAddress = async () => {
+    try {
+        const response = await fetch(`${serverURL}/shipping_addresses`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching shipping adresses:', error);
+    }
+};
 
 const ShippingAddress = ({ navigation }) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
+    const [addresses, setAddresses] = useState([]);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        const fetchAddress = async () => {
+            const addressData = await getAddress();
+            if (addressData.data.length > 0 && selectedId === null) { // Check if addresses exist and selectedId is null
+                setSelectedId(addressData.data[0].id); // Set the selectedId to the first address id
+                dispatch(updateShippingAddress(addressData.data[0].id)); // Update the shipping address
+            }
+            setAddresses(addressData.data);
+        };
+        fetchAddress();
+    }, []);
 
     const handleCheckBoxClick = (id) => {
+        dispatch(updateShippingAddress(id));
         setSelectedId(id);
     };
 
@@ -43,9 +68,9 @@ const ShippingAddress = ({ navigation }) => {
                             <View style={{ flexDirection: "row", alignContent: "space-between", paddingBottom: 6 }}>
                                 <Text style={{ fontSize: 14, fontWeight: "500" }}>{address.addressTitle}</Text>
 
-                                <View style={[(!(selectedId===address.id))&&styles.checkbox,(selectedId===address.id&&styles.checkbox2)]}>
+                                <View style={[(!(selectedId === address.id)) && styles.checkbox, (selectedId === address.id && styles.checkbox2)]}>
                                     {selectedId === address.id && (
-                                        <Ionicons name="checkmark-circle-sharp" size={20} color="#F15927" style={{marginTop:-4, marginLeft:-2}} />
+                                        <Ionicons name="checkmark-circle-sharp" size={20} color="#F15927" style={{ marginTop: -4, marginLeft: -2 }} />
                                     )}
                                 </View>
                             </View>

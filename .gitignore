@@ -4,6 +4,8 @@
 node_modules/
 server/.env
 server/vendor*
+refSearch.js
+sqlformodels.sql
 
 # Expo
 .expo/

@@ -1,17 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import addresses from '../data/addresses';
 import { selectTotalPrice } from "../store/cartSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
+import { updateBillingAddress } from '../store/addressSlice';
+
+const serverURL = 'http://127.0.0.1:8080/api';
+
+const getAddress = async () => {
+    try {
+        const response = await fetch(`${serverURL}/billing_addresses`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching billing adresses:', error);
+    }
+};
 
 const BillingAddress = ({ navigation }) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
+    const [addresses, setAddresses] = useState([]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchAddress = async () => {
+            const addressData = await getAddress();
+            if (addressData.data.length > 0 && selectedId === null) { // Check if addresses exist and selectedId is null
+                setSelectedId(addressData.data[0].id); // Set the selectedId to the first address id
+                dispatch(updateBillingAddress(addressData.data[0].id)); // Update the shipping address
+            }
+            setAddresses(addressData.data);
+        };
+        fetchAddress();
+    }, []);
 
     const handleCheckBoxClick = (id) => {
+        dispatch(updateBillingAddress(id));
         setSelectedId(id);
     };
 

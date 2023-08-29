@@ -1,16 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, SafeAreaView } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet, SafeAreaView } from "react-native";
 import Navigation from "./src/navigation";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
-import FilterPage from "./src/screens/FilterPage";
-import AddressSelection from "./src/screens/CheckoutSection";
-import ProductInfoComponent from "./src/components/productDetailsSub";
-import ProductInfo from "./src/data/ProductInfo.json";
 import products from "./src/data/products";
-import FetchRef from "./refSearch";
-import Checkout from "./src/screens/CheckoutSection";
 
 export default function App() {
   const productWithId1 = products.find(product => product.id === "1");
@@ -18,14 +11,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.wrapper}>
-        {/* <View style={styles.container}> */}
         <Navigation />
-        {/* <Checkout/> */}
-        {/* <FetchRef /> */}
-        {/* <AddressSelection/> */}
-        {/* <ProductInfoComponent productData={productWithId1} /> */}
         <StatusBar style="auto" />
-        {/* </View> */}
       </SafeAreaView>
     </Provider>
   );

@@ -31,6 +31,39 @@ type Product struct {
 	ReturnPolicy  string `json:"returnPolicy"`
 }
 
+type shippingAdd struct {
+	AddressTitle string `json:"addressTitle"`
+	Address      string `json:"address"`
+	IsSelected   bool   `json:"isSelected"`
+}
+
+type billingAdd struct {
+	AddressTitle string `json:"addressTitle"`
+	Address      string `json:"address"`
+	IsSelected   bool   `json:"isSelected"`
+}
+
+// type cartItem struct {
+// 	ProdID   uint `json:"prod_id"`
+// 	OrderID  uint `json:"order_id"`
+// 	Quantity int  `json:"quantity"`
+// }
+
+// type invoice struct {
+// 	BillAddID uint `json:"billAdd_id"`
+// 	ShipAddID uint `json:"shipAdd_id"`
+// 	PaymentID uint `json:"payment_id"`
+// 	OrderID   uint `json:"order_id"`
+// }
+
+// type order struct {
+// 	OrderID uint `json:"order_id"`
+// }
+
+type paymentMethod struct {
+	Type string `json:"type"`
+}
+
 type Repository struct {
 	DB *gorm.DB
 }
@@ -55,6 +88,75 @@ func (r *Repository) CreateProduct(context *fiber.Ctx) error {
 
 	context.Status(http.StatusOK).JSON(&fiber.Map{
 		"message": "product has been added"})
+	return nil
+}
+
+func (r *Repository) CreateShipping(context *fiber.Ctx) error {
+	shipping := shippingAdd{}
+
+	err := context.BodyParser(&shipping)
+
+	if err != nil {
+		context.Status(http.StatusUnprocessableEntity).JSON(
+			&fiber.Map{"message": "request failed"})
+		return err
+	}
+
+	err = r.DB.Create(&shipping).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not add Shipping address"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "Shipping address has been added"})
+	return nil
+}
+
+func (r *Repository) CreateBilling(context *fiber.Ctx) error {
+	billing := billingAdd{}
+
+	err := context.BodyParser(&billing)
+
+	if err != nil {
+		context.Status(http.StatusUnprocessableEntity).JSON(
+			&fiber.Map{"message": "request failed"})
+		return err
+	}
+
+	err = r.DB.Create(&billing).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not add Billing address"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "Billing address has been added"})
+	return nil
+}
+
+func (r *Repository) CreatePaymentMethod(context *fiber.Ctx) error {
+	payment := paymentMethod{}
+
+	err := context.BodyParser(&payment)
+
+	if err != nil {
+		context.Status(http.StatusUnprocessableEntity).JSON(
+			&fiber.Map{"message": "request failed"})
+		return err
+	}
+
+	err = r.DB.Create(&payment).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not add payment method"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "payment method has been added"})
 	return nil
 }
 
@@ -99,6 +201,57 @@ func (r *Repository) GetProducts(context *fiber.Ctx) error {
 	return nil
 }
 
+func (r *Repository) GetPaymentMethods(context *fiber.Ctx) error {
+	paymentMethodModels := &[]models.PaymentMethods{}
+
+	err := r.DB.Find(paymentMethodModels).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not get payment method"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "products data fetched successfully",
+		"data":    paymentMethodModels,
+	})
+	return nil
+}
+
+func (r *Repository) GetShipping(context *fiber.Ctx) error {
+	shippingModels := &[]models.ShippingAdds{}
+
+	err := r.DB.Find(shippingModels).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not get shipping addresses"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "shipping adresses data fetched successfully",
+		"data":    shippingModels,
+	})
+	return nil
+}
+
+func (r *Repository) GetBilling(context *fiber.Ctx) error {
+	billingModels := &[]models.BillingAdds{}
+
+	err := r.DB.Find(billingModels).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not get billing addresses"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "billing adresses data fetched successfully",
+		"data":    billingModels,
+	})
+	return nil
+}
+
 func (r *Repository) GetProductByID(context *fiber.Ctx) error {
 
 	id := context.Params("id")
@@ -131,7 +284,12 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 	api.Delete("/delete_product/:id", r.DeleteProduct)
 	api.Get("/get_products/:id", r.GetProductByID)
 	api.Get("/products", r.GetProducts)
-	// api.Post("/create_order",r.CreateOrder)
+	api.Post("/create_shipping", r.CreateShipping)
+	api.Get("/shipping_addresses", r.GetShipping)
+	api.Post("/create_billing", r.CreateBilling)
+	api.Get("/billing_addresses", r.GetBilling)
+	api.Post("/create_payment_method", r.CreatePaymentMethod)
+	api.Get("/payment_methods", r.GetPaymentMethods)
 }
 
 func main() {
@@ -158,6 +316,36 @@ func main() {
 	err = models.MigrateProducts(db)
 	if err != nil {
 		log.Fatal("could not migrate db")
+	}
+
+	err = models.MigrateShippingAdds(db)
+	if err != nil {
+		log.Fatal("could not migrate shipping address table")
+	}
+
+	err = models.MigrateBillingAdds(db)
+	if err != nil {
+		log.Fatal("could not migrate billing address table")
+	}
+
+	err = models.MigrateCartItems(db)
+	if err != nil {
+		log.Fatal("could not migrate cartItems table")
+	}
+
+	err = models.MigrateInvoices(db)
+	if err != nil {
+		log.Fatal("could not migrate invoices table")
+	}
+
+	err = models.MigrateOrders(db)
+	if err != nil {
+		log.Fatal("could not migrate order table")
+	}
+
+	err = models.MigratePaymentMethods(db)
+	if err != nil {
+		log.Fatal("could not migrate Payment methods table")
 	}
 
 	r := Repository{

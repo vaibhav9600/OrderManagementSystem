@@ -39,7 +39,7 @@ const FinalPage = ({ navigation }) => {
                     <Text style={{ textAlign: "center", fontSize: 12, color: "#686868" }}>We've received your order. We will send you an email once it's confirmed.</Text>
                     <View style={{ width: 200, alignItems: "center", alignContent: "center", marginTop: 10 }}>
                         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Products")}>
-                            <Text style={styles.buttonText}>PLACE ORDER</Text>
+                            <Text style={styles.buttonText}>CONTINUE SHOPPING</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
-import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { selectTotalPrice, totalQuantity } from "../store/cartSlice";
-import { useSelector } from "react-redux";
-import paymentMethods from '../data/paymentMethods';
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
+import { updatePaymentMethod } from '../store/addressSlice';
+
+const serverURL = 'http://127.0.0.1:8080/api';
+
+const getAddress = async () => {
+    try {
+        const response = await fetch(`${serverURL}/payment_methods`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching payment methods:', error);
+    }
+};
 
 const PaymentPage = ({ navigation }) => {
-
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
     const cartTotalQuantity = useSelector(totalQuantity);
+    const dispatch = useDispatch();
+    const [paymentMethods, setPaymentMethods] = useState([]);
 
+    useEffect(() => {
+        const fetchPayment = async () => {
+            const paymentData = await getAddress();
+            const paymentMethodsWithSelection = paymentData.data.map(payment => ({
+                ...payment,
+                isSelected: false,
+            }));
+            setPaymentMethods(paymentMethodsWithSelection);
+            if (paymentMethodsWithSelection.length > 0 && selectedId === null) {
+                setSelectedId(paymentMethodsWithSelection[0].id);
+                dispatch(updatePaymentMethod(paymentMethodsWithSelection[0].id));
+            }
+        };
+        fetchPayment();
+    }, []);
 
     const handleCheckBoxClick = (id) => {
+        dispatch(updatePaymentMethod(id));
         setSelectedId(id);
     };
 
@@ -41,14 +70,20 @@ const PaymentPage = ({ navigation }) => {
                             backgroundColor: selectedId === payment.id ? '#FEF2EE' : '#FAFAFA',
                         }}>
                             <View style={{ flexDirection: "row", alignContent: "space-between", paddingBottom: 6 }}>
-                                <View style={[(!(selectedId === payment.id)) && styles.checkbox, (selectedId === payment.id && styles.checkbox2)]}>
+                                <View style={[styles.checkbox, selectedId === payment.id && styles.checkbox2]}>
                                     {selectedId === payment.id && (
                                         <Ionicons name="checkmark-circle-sharp" size={20} color="#F15927" style={{ marginTop: -4, marginLeft: -2 }} />
                                     )}
                                 </View>
+                                {payment.type === 'credit' && (
+                                    <View style={styles.availableCreditContainer}>
+                                        <Text style={styles.availableCreditText}>Available Credit:</Text>
+                                        <Text style={styles.availableCreditAmount}>₹ {payment.availableCredit}</Text>
+                                    </View>
+                                )}
                             </View>
                             <View style={styles.addressBox}>
-                                <Text style={{ marginRight: 10, fontSize: 12, fontWeight: "400", color: "#686868" }}>{payment.paymentType}</Text>
+                                <Text style={{ marginRight: 10, fontSize: 12, fontWeight: "400", color: "#686868" }}>{payment.type}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -58,15 +93,57 @@ const PaymentPage = ({ navigation }) => {
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>₹ {totalPrice}</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Final Screen")}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: totalPrice === 0 ? 'gray' : '#F15927' }]}
+                    onPress={() => {
+                        if (totalPrice !== 0) {
+                            navigation.navigate("Final Screen");
+                        }
+                    }}
+                    disabled={totalPrice === 0}>
                     <Text style={styles.buttonText}>PLACE ORDER</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View >
     );
 };
 
+
+
 const styles = StyleSheet.create({
+    checkbox: {
+        width: 16,
+        height: 16,
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 7.5,
+        marginLeft: 'auto',
+    },
+    checkbox2: {
+        width: 16,
+        height: 16,
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 7.5,
+        marginLeft: 'auto',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    availableCreditContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 'auto',
+    },
+    availableCreditText: {
+        fontSize: 12,
+        fontWeight: '400',
+        color: '#686868',
+        marginRight: 5,
+    },
+    availableCreditAmount: {
+        fontSize: 12,
+        fontWeight: '500',
+        color: '#F15927',
+    },
     totalsContainer: {
         margin: 20,
         borderColor: "gainsboro",
@@ -103,7 +180,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingVertical: 6,
         borderRadius: 4,
-        // paddingHorizontal:20,
         paddingHorizontal: 16,
     },
     buttonText: {
@@ -125,7 +201,6 @@ const styles = StyleSheet.create({
     welcomeText: {
         fontSize: 14,
         fontWeight: "600",
-        // marginRight: 10,
         lineHeight: 18,
     },
     couponInfo: {
@@ -135,7 +210,6 @@ const styles = StyleSheet.create({
     couponText: {
         fontSize: 12,
         color: "gray",
-        // marginRight: 10,
         paddingVertical: 4,
         fontWeight: "400",
     },
