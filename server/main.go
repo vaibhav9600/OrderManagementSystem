@@ -63,6 +63,114 @@ type Repository struct {
 	DB *gorm.DB
 }
 
+type CartItemWithProduct struct {
+	cartItem
+	Product Product `json:"product"`
+}
+
+type InvoiceDetailsResponse struct {
+	ShippingAddress shippingAdd           `json:"shippingAddress"`
+	BillingAddress  billingAdd            `json:"billingAddress"`
+	CartItems       []CartItemWithProduct `json:"cartItems"`
+}
+
+func (r *Repository) GetInvoiceDetails(context *fiber.Ctx) error {
+	invoiceID := context.Params("invoice_id")
+
+	if invoiceID == "" {
+		context.Status(http.StatusBadRequest).JSON(&fiber.Map{
+			"message": "invoice_id is required",
+		})
+		return nil
+	}
+
+	// Fetch shipping address
+	shippingAddress := shippingAdd{}
+	err := r.DB.Model(&invoice{}).Select("shipping_adds.address_title, shipping_adds.address, shipping_adds.is_selected").
+		Joins("JOIN shipping_adds ON shipping_adds.id = invoices.ship_add_id").
+		Where("invoices.id = ?", invoiceID).Scan(&shippingAddress).Error
+
+	if err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "failed to fetch shipping address",
+		})
+		return err
+	}
+
+	// Fetch billing address
+	billingAddress := billingAdd{}
+	err = r.DB.Model(&invoice{}).Select("billing_adds.address_title, billing_adds.address, billing_adds.is_selected").
+		Joins("JOIN billing_adds ON billing_adds.id = invoices.bill_add_id").
+		Where("invoices.id = ?", invoiceID).Scan(&billingAddress).Error
+
+	if err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "failed to fetch billing address",
+		})
+		return err
+	}
+
+	// Fetch cart items with associated products
+	// var cartItemsWithProducts []CartItemWithProduct
+	// err = r.DB.Model(&cartItem{}).
+	// 	Select("cart_items.*, products.name, products.brand, products.price, products.original_price, products.is_on_sale, products.sku, products.warranty, products.details").
+	// 	Joins("JOIN products ON cart_items.prod_id = products.id").
+	// 	Where("cart_items.invoice_id = ?", invoiceID).
+	// 	Find(&cartItemsWithProducts).Error
+
+	var cartItems []cartItem
+	err = r.DB.Model(&cartItem{}).
+		Where("invoice_id = ?", invoiceID).
+		Find(&cartItems).Error
+
+	if err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "failed to fetch cart items",
+		})
+		return err
+	}
+
+	// Fetch product details for each cart item
+	var cartItemsWithProducts []CartItemWithProduct
+	for _, cartItem := range cartItems {
+		product := Product{}
+		err := r.DB.Model(&Product{}).
+			Where("id = ?", cartItem.ProdID).
+			First(&product).Error
+
+		if err != nil {
+			context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+				"message": "failed to fetch product details",
+			})
+			return err
+		}
+
+		cartItemWithProduct := CartItemWithProduct{
+			cartItem: cartItem,
+			Product:  product,
+		}
+
+		cartItemsWithProducts = append(cartItemsWithProducts, cartItemWithProduct)
+	}
+
+	if err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "failed to fetch cart items with products",
+		})
+		return err
+	}
+
+	// Assemble the response
+	response := InvoiceDetailsResponse{
+		ShippingAddress: shippingAddress,
+		BillingAddress:  billingAddress,
+		CartItems:       cartItemsWithProducts,
+	}
+
+	context.Status(http.StatusOK).JSON(response)
+	return nil
+}
+
 func (r *Repository) CreateProduct(context *fiber.Ctx) error {
 	product := Product{}
 
@@ -305,6 +413,40 @@ func (r *Repository) GetBilling(context *fiber.Ctx) error {
 	return nil
 }
 
+func (r *Repository) GetInvoices(context *fiber.Ctx) error {
+	invoicesModels := &[]models.Invoices{}
+
+	err := r.DB.Find(invoicesModels).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not get invoices data"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "invoices table data fetched successfully",
+		"data":    invoicesModels,
+	})
+	return nil
+}
+
+func (r *Repository) GetCartItems(context *fiber.Ctx) error {
+	cartItemsModels := &[]models.CartItems{}
+
+	err := r.DB.Find(cartItemsModels).Error
+	if err != nil {
+		context.Status(http.StatusBadRequest).JSON(
+			&fiber.Map{"message": "could not get invoices data"})
+		return err
+	}
+
+	context.Status(http.StatusOK).JSON(&fiber.Map{
+		"message": "invoices table data fetched successfully",
+		"data":    cartItemsModels,
+	})
+	return nil
+}
+
 func (r *Repository) GetInvoiceID(context *fiber.Ctx) error {
 	var latestInvoiceID uint
 	if err := r.DB.Raw("SELECT id FROM invoices ORDER BY id DESC LIMIT 1").Scan(&latestInvoiceID).Error; err != nil {
@@ -363,6 +505,14 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 	api.Post("/create_invoice", r.CreateInvoice)
 	api.Get("/get_invoice_id", r.GetInvoiceID)
 	api.Post("/create_cartItems_batch", r.CreateCartItemsBatch)
+
+	//to get all the orders
+	api.Get("/get_invoice_by_id/:invoice_id", r.GetInvoiceDetails)
+	// api.Get("/get_cartItems_table/:invoice_id")
+
+	//for testing purposes only
+	api.Get("/invoices", r.GetInvoices)
+	api.Get("cart_items", r.GetCartItems)
 }
 
 func main() {

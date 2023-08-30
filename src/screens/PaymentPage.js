@@ -91,7 +91,7 @@ const PaymentPage = ({ navigation }) => {
         if (totalPrice !== 0) {
             await addInvoice(invoiceData); // Wait for addInvoice to complete
             const newInvoiceID = await getInvoiceID();
-            setInvoiceID(newInvoiceID.data.data); // Update the invoice ID state
+            setInvoiceID(newInvoiceID.data); // Update the invoice ID state
 
             const productsWithInvoiceId = productsWithQuantities.map((product) => ({
                 ...product,

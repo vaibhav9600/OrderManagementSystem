@@ -11,6 +11,8 @@ sqlformodels.sql
 .expo/
 dist/
 web-build/
+temp.txt
+
 
 # Native
 *.orig.*
