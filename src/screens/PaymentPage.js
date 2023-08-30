@@ -87,15 +87,17 @@ const PaymentPage = ({ navigation }) => {
         payment_id: payment_met
     };
 
+
     const handlePlaceOrder = async () => {
         if (totalPrice !== 0) {
             await addInvoice(invoiceData); // Wait for addInvoice to complete
             const newInvoiceID = await getInvoiceID();
-            setInvoiceID(newInvoiceID.data); // Update the invoice ID state
+            // setInvoiceID(newInvoiceID.data); // Update the invoice ID state
+            // console.log("invoice id:" + newInvoiceID.data);
 
             const productsWithInvoiceId = productsWithQuantities.map((product) => ({
                 ...product,
-                invoice_id: 13,
+                invoice_id: newInvoiceID.data !== null ? newInvoiceID.data : 13,
             }));
 
             console.log(productsWithInvoiceId);
@@ -120,7 +122,7 @@ const PaymentPage = ({ navigation }) => {
             }
         };
         fetchPayment();
-    }, [invoiceData]);
+    }, [invoiceData, invoiceID]);
 
     const handleCheckBoxClick = (id) => {
         dispatch(updatePaymentMethod(id));

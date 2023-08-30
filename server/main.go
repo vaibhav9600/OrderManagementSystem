@@ -71,6 +71,7 @@ type CartItemWithProduct struct {
 type InvoiceDetailsResponse struct {
 	ShippingAddress shippingAdd           `json:"shippingAddress"`
 	BillingAddress  billingAdd            `json:"billingAddress"`
+	PaymentMethod   paymentMethod         `json:"paymentMethod"`
 	CartItems       []CartItemWithProduct `json:"cartItems"`
 }
 
@@ -110,13 +111,18 @@ func (r *Repository) GetInvoiceDetails(context *fiber.Ctx) error {
 		return err
 	}
 
-	// Fetch cart items with associated products
-	// var cartItemsWithProducts []CartItemWithProduct
-	// err = r.DB.Model(&cartItem{}).
-	// 	Select("cart_items.*, products.name, products.brand, products.price, products.original_price, products.is_on_sale, products.sku, products.warranty, products.details").
-	// 	Joins("JOIN products ON cart_items.prod_id = products.id").
-	// 	Where("cart_items.invoice_id = ?", invoiceID).
-	// 	Find(&cartItemsWithProducts).Error
+	//fetch payment method
+	paymentMethod := paymentMethod{}
+	err = r.DB.Model(&invoice{}).Select("payment_methods.type").
+		Joins("JOIN payment_methods ON payment_methods.id = invoices.payment_id").
+		Where("invoices.id = ?", invoiceID).Scan(&paymentMethod).Error
+
+	if err != nil {
+		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+			"message": "failed to fetch payment method",
+		})
+		return err
+	}
 
 	var cartItems []cartItem
 	err = r.DB.Model(&cartItem{}).
@@ -164,6 +170,7 @@ func (r *Repository) GetInvoiceDetails(context *fiber.Ctx) error {
 	response := InvoiceDetailsResponse{
 		ShippingAddress: shippingAddress,
 		BillingAddress:  billingAddress,
+		PaymentMethod:   paymentMethod, // Include payment method here
 		CartItems:       cartItemsWithProducts,
 	}
 
@@ -510,9 +517,9 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 	api.Get("/get_invoice_by_id/:invoice_id", r.GetInvoiceDetails)
 	// api.Get("/get_cartItems_table/:invoice_id")
 
-	//for testing purposes only
+	//for testing purposes onlyc
 	api.Get("/invoices", r.GetInvoices)
-	api.Get("cart_items", r.GetCartItems)
+	api.Get("/cart_items", r.GetCartItems)
 }
 
 func main() {
