@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
 import { selectTotalPrice } from "../store/cartSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
+import { resetCart } from '../store/cartSlice';
+import { resetAddress } from '../store/addressSlice';
 
 
 const FinalPage = ({ navigation }) => {
 
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
+    const dispatch = useDispatch();
+
+    const handleResetPress = () => {
+        dispatch(resetCart());
+        dispatch(resetAddress());
+        navigation.navigate("Products");
+    };
+
 
 
     const handleCheckBoxClick = (id) => {
@@ -38,7 +48,9 @@ const FinalPage = ({ navigation }) => {
                     </View>
                     <Text style={{ textAlign: "center", fontSize: 12, color: "#686868" }}>We've received your order. We will send you an email once it's confirmed.</Text>
                     <View style={{ width: 200, alignItems: "center", alignContent: "center", marginTop: 10 }}>
-                        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Products")}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={handleResetPress}
+                        >
                             <Text style={styles.buttonText}>CONTINUE SHOPPING</Text>
                         </TouchableOpacity>
                     </View>

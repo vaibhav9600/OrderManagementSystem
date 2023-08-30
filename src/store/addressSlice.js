@@ -18,9 +18,10 @@ export const addressSlice = createSlice({
         },
         updatePaymentMethod: (state, action) => {
             state.selectedPaymentMethod = action.payload
-        }
+        },
+        resetAddress: () => initialState,
     },
 })
 
-export const { updateShippingAddress, updateBillingAddress, updatePaymentMethod } = addressSlice.actions;
+export const { updateShippingAddress, updateBillingAddress, updatePaymentMethod, resetAddress } = addressSlice.actions;
 export default addressSlice.reducer;

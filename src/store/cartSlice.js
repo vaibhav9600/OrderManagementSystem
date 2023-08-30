@@ -31,6 +31,7 @@ export const cartSlice = createSlice({
                 state.items = state.items.filter((item) => item != cartItem);
             }
         },
+        resetCart: () => initialState,
     },
 });
 
@@ -43,6 +44,8 @@ export const selectSubtotals = (state) => state.cart.items.reduce(
 export const totalQuantity = (state) => state.cart.items.reduce(
     (total, cartItem) => total + cartItem.quantity, 0
 );
+
+export const { resetCart } = cartSlice.actions;
 
 const cartSelector = (state) => state.cart;
 
