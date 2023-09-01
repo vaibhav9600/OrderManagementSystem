@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { resetCart } from '../store/cartSlice';
 import { resetAddress } from '../store/addressSlice';
+import { resetInvoice } from '../store/invoiceSlice';
 
 
 const FinalPage = ({ navigation }) => {
@@ -12,10 +13,12 @@ const FinalPage = ({ navigation }) => {
     const [selectedId, setSelectedId] = useState(null);
     const totalPrice = useSelector(selectTotalPrice);
     const dispatch = useDispatch();
+    const invoiceID = useSelector((state) => state.invoice.invoiceID);
 
     const handleResetPress = () => {
         dispatch(resetCart());
         dispatch(resetAddress());
+        dispatch(resetInvoice());
         navigation.navigate("Products");
     };
 
@@ -25,7 +28,7 @@ const FinalPage = ({ navigation }) => {
         setSelectedId(id);
     };
 
-    const ImageAdd = "/Users/vaibhavmishra/project/oms/OrderMS/assets/FinishLine.png"
+    const ImageAdd = "https://s8d4.turboimg.net/t/93027991_FinishLine.png"
     return (
         <View style={{
             flex: 1, backgroundColor: "white",
@@ -44,7 +47,7 @@ const FinalPage = ({ navigation }) => {
                     <Text style={styles.textOne}>Thank you Harish!</Text>
                     <View style={{ flexDirection: "row", paddingBottom: 8 }}>
                         <Text style={styles.textOne}>Your order number is </Text>
-                        <Text style={[styles.textOne, styles.textTwo]}>102</Text>
+                        <Text style={[styles.textOne, styles.textTwo]}>{invoiceID}</Text>
                     </View>
                     <Text style={{ textAlign: "center", fontSize: 12, color: "#686868" }}>We've received your order. We will send you an email once it's confirmed.</Text>
                     <View style={{ width: 200, alignItems: "center", alignContent: "center", marginTop: 10 }}>

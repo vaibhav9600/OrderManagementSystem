@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { TextInput, TouchableOpacity, View, Image, Text } from "react-native"; // You don't need to import FontAwesome5 here
 import CartHeader from "./components/CartHeader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectNumberOfItems } from "./store/cartSlice";
 import FilterPage from "./screens/FilterPage";
 import CementPage from "./screens/CementPage";
@@ -24,11 +24,15 @@ import ShippingAddress from "./screens/CheckoutSection";
 import BillingAddress from "./screens/BillingAddress";
 import PaymentPage from "./screens/PaymentPage";
 import FinalPage from "./screens/FinalPage";
+import { resetAddress } from "./store/addressSlice";
+import { resetCart } from "./store/cartSlice";
+import { resetInvoice } from "./store/invoiceSlice";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
 
   const numberOfItems = useSelector(selectNumberOfItems);
   return (
@@ -268,7 +272,12 @@ const Navigation = () => {
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                       <TouchableOpacity
-                        onPress={() => navigation.goBack()} // Add this line for custom back button behavior
+                        onPress={() => {
+                          dispatch(resetCart());
+                          dispatch(resetAddress());
+                          dispatch(resetInvoice());
+                          navigation.navigate("Products");
+                        }}// Add this line for custom back button behavior
                         style={{ paddingHorizontal: 10 }}
                       >
                         <Ionicons name="arrow-back" size={24} color="black" />

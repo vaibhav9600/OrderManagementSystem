@@ -515,7 +515,6 @@ func (r *Repository) SetupRoutes(app *fiber.App) {
 
 	//to get all the orders
 	api.Get("/get_invoice_by_id/:invoice_id", r.GetInvoiceDetails)
-	// api.Get("/get_cartItems_table/:invoice_id")
 
 	//for testing purposes onlyc
 	api.Get("/invoices", r.GetInvoices)
@@ -578,5 +577,9 @@ func main() {
 	}
 	app := fiber.New()
 	r.SetupRoutes(app)
-	app.Listen(":8080")
+	// app.Listen(":8080")
+	err = app.Listen(":8080")
+	if err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }

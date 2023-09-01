@@ -6,6 +6,7 @@ import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
 import { updatePaymentMethod } from '../store/addressSlice';
 import { selectProductsWithQuantities } from '../store/cartSlice';
+import { updateInvoice } from '../store/invoiceSlice';
 
 const serverURL = 'http://127.0.0.1:8080/api';
 
@@ -99,7 +100,7 @@ const PaymentPage = ({ navigation }) => {
                 ...product,
                 invoice_id: newInvoiceID.data !== null ? newInvoiceID.data : 13,
             }));
-
+            dispatch(updateInvoice(newInvoiceID.data));
             console.log(productsWithInvoiceId);
             await createCartItemsBatch(productsWithInvoiceId);
 
@@ -148,22 +149,24 @@ const PaymentPage = ({ navigation }) => {
                             paddingVertical: 12,
                             flexDirection: "column",
                             borderColor: 'gray',
+                            flex: 1,
+                            borderWidth: 1,
                             padding: 10,
                             borderRadius: 5,
                             backgroundColor: selectedId === payment.id ? '#FEF2EE' : '#FAFAFA',
                         }}>
-                            <View style={{ flexDirection: "row", alignContent: "space-between", paddingBottom: 6 }}>
+                            <View style={{ flexDirection: "row", alignContent: "space-between", paddingBottom: 5 }}>
                                 <View style={[styles.checkbox, selectedId === payment.id && styles.checkbox2]}>
                                     {selectedId === payment.id && (
                                         <Ionicons name="checkmark-circle-sharp" size={20} color="#F15927" style={{ marginTop: -4, marginLeft: -2 }} />
                                     )}
                                 </View>
-                                {payment.type === 'credit' && (
+                                {/* {(payment.type === 'Credit' || payment.type === 'credit') && (
                                     <View style={styles.availableCreditContainer}>
                                         <Text style={styles.availableCreditText}>Available Credit:</Text>
-                                        <Text style={styles.availableCreditAmount}>₹ {payment.availableCredit}</Text>
+                                        <Text style={styles.availableCreditAmount}>₹ 8000</Text>
                                     </View>
-                                )}
+                                )} */}
                             </View>
                             <View style={styles.addressBox}>
                                 <Text style={{ marginRight: 10, fontSize: 12, fontWeight: "400", color: "#686868" }}>{payment.type}</Text>
@@ -197,17 +200,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000',
         borderRadius: 7.5,
-        marginLeft: 'auto',
+        // marginLeft: 'auto',
     },
     checkbox2: {
-        width: 16,
-        height: 16,
-        borderWidth: 1,
+        // width: 16,
+        // height: 16,
+        borderWidth: 0,
         borderColor: '#000',
         borderRadius: 7.5,
-        marginLeft: 'auto',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // marginLeft: 'auto',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     availableCreditContainer: {
         flexDirection: 'row',
@@ -221,6 +224,7 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     availableCreditAmount: {
+        flexDirection: "row",
         fontSize: 12,
         fontWeight: '500',
         color: '#F15927',
