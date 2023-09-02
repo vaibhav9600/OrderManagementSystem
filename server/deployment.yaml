@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-app
+  name: go-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend-app
+      app: go-backend
   template:
     metadata:
       labels:
-        app: backend-app
+        app: go-backend
     spec:
       containers:
-      - name: backend-app
-        image: my-backend-app:latest
-        ports:
-        - containerPort: 8080
+        - name: go-backend
+          image: novaib/oms-vaibhav:v1.0
+          ports:
+            - containerPort: 3000

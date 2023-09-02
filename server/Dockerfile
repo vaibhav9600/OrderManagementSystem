@@ -16,10 +16,10 @@ COPY . .
 
 RUN go mod tidy
 # Build the Go application
-# RUN go build -o main .
+RUN go build -o main .
 
 # Expose the port your application is running on
 EXPOSE 5432
 
 # Command to run the executable
-# CMD ["./main"]
+CMD ["./main"]
