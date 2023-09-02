@@ -44,7 +44,9 @@ const ProductDetailsScreen = () => {
 
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < 10) {
+      setQuantity(quantity + 1);
+    }
   };
 
   const decreaseQuantity = () => {
@@ -140,7 +142,7 @@ const ProductDetailsScreen = () => {
               </View>
               <View style={{ alignItems: "flex-end", paddingRight: 16 }}>
                 <Text>Total Value</Text>
-                <Text>₹10000</Text>
+                <Text>₹{product.price * quantity}</Text>
               </View>
             </View>
           </View>
