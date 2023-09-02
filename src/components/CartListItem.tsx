@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
     width: 60,
     padding: 8,
     aspectRatio: 1,
+    backgroundColor:"#F6F6F6",
+    borderRadius:2,
   },
   name: {
     fontWeight: "500",

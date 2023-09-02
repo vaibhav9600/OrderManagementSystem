@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Modal
 } from "react-native";
 // import products from "../data/products";
 import { AntDesign } from "@expo/vector-icons"; // Import AntDesign icon
@@ -19,8 +20,11 @@ import BelowAddToCart from "../components/productDetailsBelowAddToCart";
 import HorizontalProductList from "../components/HorizontalProductList";
 import products from "../data/products";
 import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { getCartItemFromProduct } from "../store/cartSlice";
+import PopUpTop from "../components/popuptop";
 
-const ProductDetailsScreen = () => {
+const ProductDetailsScreen = ({ navigation }) => {
 
 
   const product = useSelector((state) => state.products.selectedProduct);
@@ -29,6 +33,10 @@ const ProductDetailsScreen = () => {
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const mainImageCarouselRef = useRef(null);
+
+  const quantityCartItem = useSelector((state) => getCartItemFromProduct(state, product));
+
+
 
   const handlePrevImage = () => {
     const newIndex = currentImageIndex === 0 ? imagesArray.length - 1 : currentImageIndex - 1;
@@ -40,6 +48,35 @@ const ProductDetailsScreen = () => {
     const newIndex = currentImageIndex === imagesArray.length - 1 ? 0 : currentImageIndex + 1;
     setCurrentImageIndex(newIndex);
     mainImageCarouselRef.current.scrollToIndex({ index: newIndex });
+  };
+
+  // State to control the visibility of the pop-up window
+  const [isPopUpVisible, setPopUpVisible] = useState(false);
+
+  // Function to open the pop-up window
+  const openPopUp = () => {
+    setPopUpVisible(true);
+  };
+
+  // Function to close the pop-up window
+  const closePopUp = () => {
+    setPopUpVisible(false);
+  };
+
+  // Function to navigate to the cart screen
+  const navigateToCart = () => {
+    // Add your navigation logic here
+    // Example: navigation.navigate("CartScreen");
+    navigation.navigate("Shopping Cart");
+    closePopUp(); // Close the pop-up after navigation
+  };
+
+  // Function to navigate to the checkout screen
+  const navigateToCheckout = () => {
+    // Add your navigation logic here
+    // Example: navigation.navigate("CheckoutScreen");
+    navigation.navigate("Checkout Screen");
+    closePopUp(); // Close the pop-up after navigation
   };
 
 
@@ -57,6 +94,7 @@ const ProductDetailsScreen = () => {
 
   const addToCart = () => {
     dispatch(cartSlice.actions.addCartItem({ product: product, quantity: quantity }));
+    openPopUp();
   };
 
   const [isWishlistPressed, setIsWishlistPressed] = useState(false);
@@ -142,7 +180,7 @@ const ProductDetailsScreen = () => {
               </View>
               <View style={{ alignItems: "flex-end", paddingRight: 16 }}>
                 <Text>Total Value</Text>
-                <Text>₹{product.price * quantity}</Text>
+                <Text>₹{(product.price * quantity).toLocaleString('en-IN')}</Text>
               </View>
             </View>
           </View>
@@ -151,6 +189,37 @@ const ProductDetailsScreen = () => {
             <TouchableOpacity onPress={addToCart} style={styles.button}>
               <Text style={styles.buttonText}>Add To Cart</Text>
             </TouchableOpacity>
+            <Modal visible={isPopUpVisible} transparent animationType="slide">
+              <View style={styles.popupContainer}>
+                <View style={{ backgroundColor: "white", width: "80%", borderRadius: 5 }}>
+                  <View style={[styles.headerRow]}>
+                    {/* Close button */}
+                    <Text style={styles.quantityText}>{quantityCartItem} items added to cart</Text>
+                    <TouchableOpacity onPress={closePopUp} style={styles.closeButton}>
+                      <Entypo name="cross" size={20} color="black" />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{ paddingHorizontal: 16 }}>
+                    <PopUpTop product={product} quantity={quantityCartItem} />
+                  </View>
+                  {/* Pop-up content */}
+                  <View style={{ flexDirection: "row", paddingHorizontal: 12, paddingBottom: 12 }}>
+                    <TouchableOpacity onPress={navigateToCart} style={[styles.popupButtonVC, { marginRight: 8 }]}>
+                      <Text style={styles.popupButtonTextVC}>VIEW CART</Text>
+                    </TouchableOpacity>
+
+                    {/* Checkout button */}
+                    <TouchableOpacity
+                      onPress={navigateToCheckout}
+                      style={styles.popupButton}
+                    >
+                      <Text style={styles.popupButtonText}>CHECKOUT</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+
             <TouchableOpacity
               style={[
                 styles.wishlistButton,
@@ -333,6 +402,60 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     padding: 23,
     borderRadius: 8,
+  },
+  popupContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'rgba(0,0,0,.5)',
+  },
+  popup: {
+    // backgroundColor: "white",
+    padding: 20,
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomWidth: 1, // Add a border line at the bottom of the header row
+    borderBottomColor: "#ccc", // Border color
+    paddingLeft: 16,
+    paddingRight: 8,
+  },
+  closeButton: {
+    paddingVertical: 8,
+  },
+  quantityText: {
+    fontSize: 15,
+    fontWeight: "500",
+  },
+  popupButton: {
+    backgroundColor: "#F15927",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    flex: 1,
+  },
+  popupButtonText: {
+    color: "white",
+    fontWeight: "500",
+    fontSize: 16,
+  },
+  popupButtonVC: {
+    backgroundColor: "white",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#F15927"
+  },
+  popupButtonTextVC: {
+    color: "#F15927",
+    fontWeight: "500",
+    fontSize: 16,
   },
 });
 

@@ -295,12 +295,12 @@ const ProductScreen = ({ navigation }) => {
                 paddingLeft: 20,
               }}
               onPress={() => {
-                setSelectedFilter(4);
-                setData([...data].sort((a, b) => a.rating.rate - b.rating.rate));
                 setVisible(false);
-                flatListRef.current.scrollToOffset({ offset: 0 });
+                // setSelectedFilter(4);
+                // setData([...data].sort((a, b) => a.rating.rate - b.rating.rate));
+                // flatListRef.current.scrollToOffset({ offset: 0 });
               }}>
-              <Text style={{ fontSize: 18, color: '#000' }}> Sort By Rating</Text>
+              <Text style={{ fontSize: 18, color: '#000' }}> CLOSE</Text>
             </TouchableOpacity>
           </View>
         </View>

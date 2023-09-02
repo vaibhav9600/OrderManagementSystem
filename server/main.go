@@ -578,8 +578,8 @@ func main() {
 	app := fiber.New()
 	r.SetupRoutes(app)
 	// app.Listen(":8080")
-	// err = app.Listen(":8080")
-	err = app.Listen(":3000")
+	err = app.Listen(":8080")
+	// err = app.Listen(":3000")
 
 	if err != nil {
 		log.Fatalf("Failed to start server: %v", err)

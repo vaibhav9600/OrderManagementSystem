@@ -73,3 +73,11 @@ export const selectTotalPrice = createSelector(
     selectSubtotals,
     (delivery, subtotal) => subtotal + delivery
 );
+
+
+export const getCartItemFromProduct = (state, product) => {
+    const cartItem = state.cart.items.find((item) => item.product.id === product.id);
+    return cartItem ? cartItem.quantity : 0;
+};
+
+
