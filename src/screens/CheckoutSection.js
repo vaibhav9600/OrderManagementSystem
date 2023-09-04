@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { updateShippingAddress, updateSA } from '../store/addressSlice';
 
 // const serverURL = 'http://127.0.0.1:8080/api';
-const serverURL = 'http://10.44.1.91:31000/api/';
+const serverURL = 'http://localhost:31000/api/';
 
 
 const getAddress = async () => {
