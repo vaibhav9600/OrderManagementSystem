@@ -7,11 +7,11 @@ const CircularFrame = ({ children }) => (
     </View>
 );
 
-const ProductType = ({ imageSource, label }) => (
+const ProductType = ({ imageUrl, label }) => (
     <View style={styles.productTypeContainer}>
         <CircularFrame>
             <Image
-                source={imageSource}
+                source={{ uri: imageUrl }} // Use uri directly in the Image component
                 style={styles.image}
                 resizeMode="contain"
             />
@@ -22,10 +22,10 @@ const ProductType = ({ imageSource, label }) => (
 
 const ListProductTypes = ({ navigation }) => {
     const productTypes = [
-        { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/cement.png'), label: 'Cement' },
-        { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/paint-roller.png'), label: 'Paint' },
-        { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/spray-can.png'), label: 'Walling Solutions' },
-        { imageSource: require('/Users/vaibhavmishra/project/oms/OrderMS/assets/header-components/steel.png'), label: 'Steel' },
+        { imageUrl: 'https://i.ibb.co/WG1CVxW/cement.png', label: 'Cement' },
+        { imageUrl: 'https://i.ibb.co/6wGqyvX/paint-roller.png', label: 'Paint' },
+        { imageUrl: 'https://i.ibb.co/qmSHkhr/spray-can.png', label: 'Walling Solutions' },
+        { imageUrl: 'https://i.ibb.co/BypzpsY/steel.png', label: 'Steel' },
     ];
 
     return (
@@ -34,13 +34,13 @@ const ListProductTypes = ({ navigation }) => {
                 <TouchableOpacity
                     key={index}
                     style={styles.productTypeButton}
-                    onPress={() =>
-                    // console.log(`${productType.label} button pressed`)
-                    { navigation.navigate('Cement Page'); }
-                    }
+                    onPress={() => {
+                        // console.log(`${productType.label} button pressed`);
+                        navigation.navigate('Cement Page');
+                    }}
                 >
                     <ProductType
-                        imageSource={productType.imageSource}
+                        imageUrl={productType.imageUrl}
                         label={productType.label}
                     />
                 </TouchableOpacity>

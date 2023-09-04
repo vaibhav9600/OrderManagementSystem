@@ -8,7 +8,8 @@ import { updatePaymentMethod } from '../store/addressSlice';
 import { selectProductsWithQuantities } from '../store/cartSlice';
 import { updateInvoice } from '../store/invoiceSlice';
 
-const serverURL = 'http://127.0.0.1:8080/api';
+// const serverURL = 'http://127.0.0.1:8080/api';
+const serverURL = 'http://10.44.1.91:31000/api/';
 
 const getAddress = async () => {
     try {
