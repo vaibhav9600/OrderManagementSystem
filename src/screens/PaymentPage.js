@@ -6,7 +6,7 @@ import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
 import { updatePaymentMethod } from '../store/addressSlice';
 import { selectProductsWithQuantities } from '../store/cartSlice';
-import { updateInvoice } from '../store/invoiceSlice';
+import { updateInvoice, updatePT } from '../store/invoiceSlice';
 
 // const serverURL = 'http://127.0.0.1:8080/api';
 const serverURL = 'http://10.44.1.91:31000/api/';
@@ -72,12 +72,12 @@ const getInvoiceID = async () => {
 };
 
 const PaymentPage = ({ navigation }) => {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState(useSelector((state) => state.address.selectedPaymentMethod));
     const totalPrice = useSelector(selectTotalPrice);
+    const [paymentMethods, setPaymentMethods] = useState(useSelector((state) => state.address.paymentTypes));
     const cartTotalQuantity = useSelector(totalQuantity);
     const dispatch = useDispatch();
     const [invoiceID, setInvoiceID] = useState(null);
-    const [paymentMethods, setPaymentMethods] = useState([]);
     const productsWithQuantities = useSelector(selectProductsWithQuantities);
     const shipping_add = useSelector((state) => state.address.selectedShippingAddress);
     const billing_add = useSelector((state) => state.address.selectedBillingAddress);

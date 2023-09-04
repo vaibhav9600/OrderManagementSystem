@@ -4,7 +4,7 @@ import { selectTotalPrice } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutTop from '../components/checkOutTop';
 import { Ionicons } from '@expo/vector-icons';
-import { updateShippingAddress } from '../store/addressSlice';
+import { updateShippingAddress, updateSA } from '../store/addressSlice';
 
 // const serverURL = 'http://127.0.0.1:8080/api';
 const serverURL = 'http://10.44.1.91:31000/api/';
@@ -22,9 +22,9 @@ const getAddress = async () => {
 
 const ShippingAddress = ({ navigation }) => {
 
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState(useSelector((state) => state.address.selectedShippingAddress));
     const totalPrice = useSelector(selectTotalPrice);
-    const [addresses, setAddresses] = useState([]);
+    const [addresses, setAddresses] = useState(useSelector((state) => state.address.shippingAddresses));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,6 +35,7 @@ const ShippingAddress = ({ navigation }) => {
                 dispatch(updateShippingAddress(addressData.data[0].id)); // Update the shipping address
             }
             setAddresses(addressData.data);
+            dispatch(updateSA(addressData.data));
         };
         fetchAddress();
     }, []);

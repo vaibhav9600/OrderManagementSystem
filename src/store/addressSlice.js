@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    shippingAddresses: [],
+    billingAddresses: [],
     selectedShippingAddress: null,
     selectedBillingAddress: null,
     selectedPaymentMethod: null,
+    paymentTypes: []
 };
 
 export const addressSlice = createSlice({
@@ -19,9 +22,18 @@ export const addressSlice = createSlice({
         updatePaymentMethod: (state, action) => {
             state.selectedPaymentMethod = action.payload
         },
+        updateSA: (state, action) => {
+            state.shippingAddresses = action.payload
+        },
+        updateBA: (state, action) => {
+            state.billingAddresses = action.payload
+        },
+        updatePT: (state, action) => {
+            state.paymentTypes = action.payload
+        },
         resetAddress: () => initialState,
     },
 })
 
-export const { updateShippingAddress, updateBillingAddress, updatePaymentMethod, resetAddress } = addressSlice.actions;
+export const { updateShippingAddress, updateBillingAddress, updatePaymentMethod, resetAddress, updateBA, updateSA, updatePT } = addressSlice.actions;
 export default addressSlice.reducer;
